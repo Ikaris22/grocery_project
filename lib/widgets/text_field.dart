@@ -12,10 +12,10 @@ const Textfield({super.key, required this.textfieldName,required this.textfieldH
           mainAxisAlignment: MainAxisAlignment.start,
           children: [Text(textfieldName,
             style: const TextStyle(
-              fontSize: 20,
+              fontSize: 17,
               fontWeight: FontWeight.bold,),)],
         ),
-        const SizedBox(height: 15),
+        const SizedBox(height: 12),
         TextField(
            decoration: InputDecoration(
              hintStyle: const TextStyle(fontSize: 16,color: AppColors.miniTextColor),
