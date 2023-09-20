@@ -11,10 +11,10 @@ class _GroceryApp extends State<GroceryApp>{
   @override
   Widget build(BuildContext context) {
     return  const Scaffold(
-      resizeToAvoidBottomInset: false,
-          body: Center(
-                child: Splash()
-          )
+        resizeToAvoidBottomInset: false,
+        body: Center(
+            child: Splash()
+        )
     );
   }
 
