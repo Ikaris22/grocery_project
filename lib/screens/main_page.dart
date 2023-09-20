@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:vippro_project/screens/register/register.dart';
-//import 'package:vippro_project/screens/login/login.dart';
+import 'package:vippro_project/screens/splash/splash.dart';
 
-//import 'package:vippro_project/screens/splash/splash.dart';
 class GroceryApp extends StatefulWidget{
   const GroceryApp({super.key});
 
@@ -15,7 +13,7 @@ class _GroceryApp extends State<GroceryApp>{
     return  const Scaffold(
       resizeToAvoidBottomInset: false,
           body: Center(
-                child: Register()
+                child: Splash()
           )
     );
   }
