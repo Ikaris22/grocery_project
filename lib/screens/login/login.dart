@@ -42,10 +42,10 @@ class _Login extends State<Login> {
                               fontWeight: FontWeight.bold))
                     ],
                   ),
-                  const Textfield(
+                  const InputField(
                       textfieldName: 'Email Id',
                       textfieldHintText: 'Enter your Email Id'),
-                  const Textfield(
+                  const InputField(
                       textfieldName: 'Password',
                       textfieldHintText: 'Enter Your Password'),
                    ElevatedButtonWidget(

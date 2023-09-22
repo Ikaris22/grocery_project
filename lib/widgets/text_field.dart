@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:vippro_project/base/app_colors.dart';
-class Textfield extends StatelessWidget{
+class InputField extends StatelessWidget{
   final String textfieldName;
   final String textfieldHintText;
-const Textfield({super.key, required this.textfieldName,required this.textfieldHintText });
+const InputField({super.key, required this.textfieldName,required this.textfieldHintText });
   @override
   Widget build(BuildContext context) {
     return Column(

@@ -38,19 +38,19 @@ class _Register extends State<Register> {
                           color: AppColors.greenColor,
                           fontWeight: FontWeight.bold))
                 ]),
-                const Textfield(
+                const InputField(
                     textfieldName: 'Your Name',
                     textfieldHintText: 'Enter Your Name'),
-                const Textfield(
+                const InputField(
                     textfieldName: 'Email Id',
                     textfieldHintText: 'Enter Your Email Id'),
-                const Textfield(
+                const InputField(
                     textfieldName: 'Password',
                     textfieldHintText: 'Enter Your Password'),
-                const Textfield(
+                const InputField(
                     textfieldName: 'Confirm Password',
                     textfieldHintText: 'Enter Your Password'),
-                const Textfield(
+                const InputField(
                     textfieldName: 'Contact Number',
                     textfieldHintText: 'Enter Your Contact Number'),
                  ElevatedButtonWidget(
