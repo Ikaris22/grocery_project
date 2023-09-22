@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:vippro_project/base/app_colors.dart';
+import 'package:vippro_project/base/app_string.dart';
 import 'package:vippro_project/base/logo.dart';
 import 'package:vippro_project/screens/register/register.dart';
 import 'package:vippro_project/widgets/elevated_button.dart';
@@ -43,11 +44,11 @@ class _Login extends State<Login> {
                     ],
                   ),
                   const InputField(
-                      textfieldName: 'Email Id',
-                      textfieldHintText: 'Enter your Email Id'),
+                      textfieldName: LoginPageString.emailId,
+                      textfieldHintText: LoginPageString.emailIdHint),
                   const InputField(
-                      textfieldName: 'Password',
-                      textfieldHintText: 'Enter Your Password'),
+                      textfieldName: LoginPageString.password,
+                      textfieldHintText: LoginPageString.passwordHint),
                    ElevatedButtonWidget(
                       buttonWidth: double.infinity,
                       buttonName: 'Login',
@@ -77,7 +78,7 @@ class _Login extends State<Login> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
-                        'Don\'t You Have an Account?',
+                        LoginPageString.question,
                         style: TextStyle(color: AppColors.miniTextColor),
                       ),
                       TextButtonWidget(

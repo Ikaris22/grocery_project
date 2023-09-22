@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:vippro_project/base/app_colors.dart';
+import 'package:vippro_project/base/app_string.dart';
 import 'package:vippro_project/base/logo.dart';
 import 'package:vippro_project/widgets/divider_line.dart';
 import 'package:vippro_project/widgets/elevated_button.dart';
@@ -39,20 +40,20 @@ class _Register extends State<Register> {
                           fontWeight: FontWeight.bold))
                 ]),
                 const InputField(
-                    textfieldName: 'Your Name',
-                    textfieldHintText: 'Enter Your Name'),
+                    textfieldName: RegisterPageString.yourName,
+                    textfieldHintText: RegisterPageString.yourNameHint),
                 const InputField(
-                    textfieldName: 'Email Id',
-                    textfieldHintText: 'Enter Your Email Id'),
+                    textfieldName: RegisterPageString.emailId,
+                    textfieldHintText: RegisterPageString.emailIdHint),
                 const InputField(
-                    textfieldName: 'Password',
-                    textfieldHintText: 'Enter Your Password'),
+                    textfieldName: RegisterPageString.password,
+                    textfieldHintText: RegisterPageString.passwordHint),
                 const InputField(
-                    textfieldName: 'Confirm Password',
-                    textfieldHintText: 'Enter Your Password'),
+                    textfieldName: RegisterPageString.confirmPassword,
+                    textfieldHintText: RegisterPageString.confirmPasswordHint),
                 const InputField(
-                    textfieldName: 'Contact Number',
-                    textfieldHintText: 'Enter Your Contact Number'),
+                    textfieldName: RegisterPageString.contactNumber,
+                    textfieldHintText: RegisterPageString.contactNumberHint),
                  ElevatedButtonWidget(
                     buttonWidth: double.infinity,
                      buttonName: 'Register',
@@ -78,7 +79,7 @@ class _Register extends State<Register> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
-                      'Already Have An Account',
+                      RegisterPageString.question,
                       style: TextStyle(color: AppColors.miniTextColor),
                     ),
                     TextButtonWidget(
