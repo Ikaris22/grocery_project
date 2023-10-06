@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-class TextButtonWidget extends StatelessWidget{
-  const TextButtonWidget({super.key, required this.textButtonName, required this.onClick});
+import 'package:vippro_project/base/app_colors.dart';
+class TextButtonLogin extends StatelessWidget{
+  const TextButtonLogin({super.key, required this.textButtonName, required this.onClick});
   final String textButtonName;
   final Function() onClick;
   @override
@@ -10,8 +11,8 @@ class TextButtonWidget extends StatelessWidget{
         child: Text(
           textButtonName,
           style: const TextStyle(
-              color: Colors.black, fontWeight: FontWeight.bold),
+              color: AppColors.blackColor, fontWeight: FontWeight.bold),
         )) ;
-  }
 
+  }
 }

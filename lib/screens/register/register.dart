@@ -3,10 +3,11 @@ import 'package:flutter_svg/svg.dart';
 import 'package:vippro_project/base/app_colors.dart';
 import 'package:vippro_project/base/app_string.dart';
 import 'package:vippro_project/base/logo.dart';
+import 'package:vippro_project/widgets/app_bar.dart';
 import 'package:vippro_project/widgets/divider_line.dart';
-import 'package:vippro_project/widgets/elevated_button.dart';
+import 'package:vippro_project/widgets/log_elevated_button.dart';
 import 'package:vippro_project/widgets/outlined_button.dart';
-import 'package:vippro_project/widgets/text_button.dart';
+import 'package:vippro_project/widgets/textbutton_login.dart';
 import 'package:vippro_project/widgets/text_field.dart';
 
 import '../login/login.dart';
@@ -22,13 +23,14 @@ class _Register extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBars(
+        leading: null,
+          appBarChild:  SvgPicture.asset(AppLogos.groceryLogo, height: 52),),
       body: ListView(
         children: [
-          const SizedBox(height: 20),
-          SvgPicture.asset(AppLogos.groceryLogo, height: 53),
           Container(
-            height: MediaQuery.of(context).size.height / 1.263,
-            margin: const EdgeInsets.only(left: 15, right: 15),
+            height: MediaQuery.of(context).size.height / 1.268,
+            margin: const EdgeInsets.only(left: 16, right: 16,top: 12),
             child:  Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -37,24 +39,24 @@ class _Register extends State<Register> {
                       style: TextStyle(
                           fontSize: 22,
                           color: AppColors.greenColor,
-                          fontWeight: FontWeight.bold))
+                          fontWeight: FontWeight.w600))
                 ]),
                 const InputField(
-                    textfieldName: RegisterPageString.yourName,
-                    textfieldHintText: RegisterPageString.yourNameHint),
+                    textFieldName: RegisterPageString.yourName,
+                    textFieldHintText: RegisterPageString.yourNameHint),
                 const InputField(
-                    textfieldName: RegisterPageString.emailId,
-                    textfieldHintText: RegisterPageString.emailIdHint),
+                    textFieldName: RegisterPageString.emailId,
+                    textFieldHintText: RegisterPageString.emailIdHint),
                 const InputField(
-                    textfieldName: RegisterPageString.password,
-                    textfieldHintText: RegisterPageString.passwordHint),
+                    textFieldName: RegisterPageString.password,
+                    textFieldHintText: RegisterPageString.passwordHint),
                 const InputField(
-                    textfieldName: RegisterPageString.confirmPassword,
-                    textfieldHintText: RegisterPageString.confirmPasswordHint),
+                    textFieldName: RegisterPageString.confirmPassword,
+                    textFieldHintText: RegisterPageString.confirmPasswordHint),
                 const InputField(
-                    textfieldName: RegisterPageString.contactNumber,
-                    textfieldHintText: RegisterPageString.contactNumberHint),
-                 ElevatedButtonWidget(
+                    textFieldName: RegisterPageString.contactNumber,
+                    textFieldHintText: RegisterPageString.contactNumberHint),
+                 LogElevatedButton(
                     buttonWidth: double.infinity,
                      buttonName: 'Register',
                     onClick: () {}),
@@ -62,7 +64,7 @@ class _Register extends State<Register> {
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(left: 15, right: 15),
+            margin: const EdgeInsets.only(left: 16, right: 16),
             child: Column(
               children: [
                 const DividerLine(title: 'Or continue with'),
@@ -82,7 +84,7 @@ class _Register extends State<Register> {
                       RegisterPageString.question,
                       style: TextStyle(color: AppColors.miniTextColor),
                     ),
-                    TextButtonWidget(
+                    TextButtonLogin(
                         textButtonName: 'Login',
                         onClick: (){
                           Navigator.push(
@@ -92,6 +94,7 @@ class _Register extends State<Register> {
                         })
                   ],
                 ),
+                const SizedBox(height: 20)
               ],
             ),
           )
