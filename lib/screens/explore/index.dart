@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vippro_project/base/app_colors.dart';
-import 'package:vippro_project/base/logo.dart';
-import 'package:vippro_project/screens/fruitsScreen/fruits_screen.dart';
+import 'package:vippro_project/base/app_images.dart';
+import 'package:vippro_project/data/mock/list_bakery_items.dart';
+import 'package:vippro_project/data/mock/list_dairy_products.dart';
+import 'package:vippro_project/data/mock/list_fruits.dart';
+import 'package:vippro_project/data/mock/list_groceries.dart';
+import 'package:vippro_project/data/mock/list_vegetables.dart';
+import 'package:vippro_project/screens/explore/widgets/listview_items.dart';
+import 'package:vippro_project/screens/fruits/index.dart';
 import 'package:vippro_project/widgets/app_bar.dart';
-import 'package:vippro_project/screens/exploreScreen/widgets/listview_items.dart';
 import 'package:vippro_project/widgets/top_listview_label.dart';
-import '../../data/screenData/exploreScreen/list_bakery_items.dart';
-import '../../data/screenData/exploreScreen/list_dairy_products.dart';
-import '../../data/screenData/exploreScreen/list_fruits.dart';
-import '../../data/screenData/exploreScreen/list_groceries.dart';
-import '../../data/screenData/exploreScreen/list_vegetables.dart';
 
 class ExploreScreen extends StatefulWidget {
   const ExploreScreen({super.key});
@@ -133,10 +133,10 @@ class _ExploreScreen extends State<ExploreScreen> {
                 itemCount: listFruits.length,
                 itemBuilder: (BuildContext context, int index) {
                   return ListviewItems(
-                      image: listFruits[index].fruitsImage,
-                      productName: listFruits[index].fruitsName,
-                      productWeight: listFruits[index].fruitsWeight,
-                      productPrice: listFruits[index].fruitsPrice);
+                      image: listFruits[index].fruitName,
+                      productName: listFruits[index].fruitName,
+                      productWeight: listFruits[index].fruitWeight,
+                      productPrice: listFruits[index].fruitPrice);
                 }))
       ],
     );
@@ -148,8 +148,8 @@ class _ExploreScreen extends State<ExploreScreen> {
         Container(
           margin: const EdgeInsets.only(right: 8, bottom: 8),
           child: TopListviewLabel(
-            title: 'Dairy Products',
-            textButtonName: 'See all',
+            title: 'Dairy Products', //TODO: dua vao trong file app string
+            textButtonName: 'See all', //TODO: dua vao trong file app string
             clickTextButton: () {},
           ),
         ),
@@ -178,8 +178,8 @@ class _ExploreScreen extends State<ExploreScreen> {
         Container(
           margin: const EdgeInsets.only(right: 8, bottom: 8),
           child: TopListviewLabel(
-            title: 'Bakery Items',
-            textButtonName: 'See all',
+            title: 'Bakery Items', //TODO: dua vao trong file app string
+            textButtonName: 'See all', //TODO: dua vao trong file app string
             clickTextButton: () {},
           ),
         ),

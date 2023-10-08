@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 
 class AppBars extends StatelessWidget implements PreferredSizeWidget {
-  const AppBars({super.key, required this.appBarChild, required this.leading});
+  const AppBars({
+    super.key,
+    required this.appBarChild,
+    required this.leading,
+  });
+
   final Widget appBarChild;
   final Widget? leading;
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -12,8 +18,10 @@ class AppBars extends StatelessWidget implements PreferredSizeWidget {
       toolbarHeight: 56,
       backgroundColor: Colors.white,
       elevation: 0,
-      title:
-          Container(padding: const EdgeInsets.only(top: 5), child: appBarChild),
+      title: Container(
+        padding: const EdgeInsets.only(top: 5),
+        child: appBarChild,
+      ),
       centerTitle: true,
     );
   }

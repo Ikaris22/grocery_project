@@ -7,9 +7,13 @@ class LogElevatedButton extends StatelessWidget {
   final String buttonName;
   final Function() onClick;
 
+  const LogElevatedButton({
+    super.key,
+    required this.buttonWidth,
+    required this.buttonName,
+    required this.onClick,
+  });
 
-
-  const LogElevatedButton({super.key, required this.buttonWidth, required this.buttonName, required this.onClick});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,14 +22,18 @@ class LogElevatedButton extends StatelessWidget {
       height: 48,
       child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.greenColor,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10))),
+            backgroundColor: AppColors.greenColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
           onPressed: onClick,
           child: Text(
             buttonName,
-            style: const TextStyle(fontSize: 18),
-          )),
+            style: const TextStyle(
+              fontSize: 18,
+            ),
+          ),),
     );
   }
 }
