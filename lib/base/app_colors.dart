@@ -9,4 +9,5 @@ class AppColors {
   static const Color blackColor = Color(0xff424242);
   static const Color backGroundColor = Color.fromRGBO(242, 252, 244, 1);
   static const Color purpleColor = Color.fromRGBO(63, 138, 154, 1);
+  static const Color lightGreyColor = Color.fromRGBO(249, 249, 249, 1);
 }
