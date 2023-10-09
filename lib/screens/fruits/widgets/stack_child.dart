@@ -10,6 +10,7 @@ class StackChild extends StatefulWidget {
       required this.name,
       required this.weight,
       required this.price});
+
   final String image;
   final String name;
   final String weight;
@@ -20,9 +21,10 @@ class StackChild extends StatefulWidget {
 }
 
 class _StackChild extends State<StackChild> {
-  String icon = 'assets/listFruitsImage/heart_ic.svg';
+  String icon = 'assets/listFruitsImage/heart_ic.svg'; //TODO: dua cai nay vao file app_images.dart
   int count = 1;
   Color buttonColor = AppColors.greenColor;
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -37,9 +39,13 @@ class _StackChild extends State<StackChild> {
             ),
             Row(
               children: [
-                Text(widget.name,
-                    style: const TextStyle(
-                        fontSize: 16, fontWeight: FontWeight.bold)),
+                Text(
+                  widget.name,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
                 const SizedBox(width: 8),
                 Text('(${widget.weight})')
               ],
@@ -50,9 +56,10 @@ class _StackChild extends State<StackChild> {
                 Text(
                   widget.price,
                   style: const TextStyle(
-                      color: AppColors.greenColor,
-                      fontSize: 17,
-                      fontWeight: FontWeight.w600),
+                    color: AppColors.greenColor,
+                    fontSize: 17,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
                 Row(
                   children: [
@@ -66,7 +73,7 @@ class _StackChild extends State<StackChild> {
                           });
                         },
                         icon: SvgPicture.asset(
-                          'assets/listFruitsImage/ic_remove.svg',
+                          'assets/listFruitsImage/ic_remove.svg', //TODO: dua cai nay vao file app_images.dart
                         ),
                         style: IconButton.styleFrom(
                           padding: EdgeInsets.zero,
@@ -88,9 +95,11 @@ class _StackChild extends State<StackChild> {
                           });
                         },
                         icon: SvgPicture.asset(
-                          'assets/listFruitsImage/icon_add.svg',
+                          'assets/listFruitsImage/icon_add.svg', //TODO: dua cai nay vao file app_images.dart
                         ),
-                        style: IconButton.styleFrom(padding: EdgeInsets.zero),
+                        style: IconButton.styleFrom(
+                          padding: EdgeInsets.zero,
+                        ),
                       ),
                     )
                   ],
@@ -106,28 +115,49 @@ class _StackChild extends State<StackChild> {
                     onPressed: () {
                       setState(() {
                         buttonColor == AppColors.greenColor
-                            ? buttonColor =
-                                const Color.fromRGBO(143, 143, 143, 1)
+                            ? buttonColor = const Color.fromRGBO(143, 143, 143, 1)
                             : buttonColor = AppColors.greenColor;
                       });
                     },
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: buttonColor,
-                        minimumSize: const Size(40, 28),
-                        padding: const EdgeInsets.only(left: 8, right: 8)),
-                    child:
-                        const Text('Subscribe', style: TextStyle(fontSize: 12)),
+                      backgroundColor: buttonColor,
+                      minimumSize: const Size(
+                        40,
+                        28,
+                      ),
+                      padding: const EdgeInsets.only(
+                        left: 8,
+                        right: 8,
+                      ),
+                    ),
+                    child: const Text(
+                      'Subscribe', //TODO: dua cai nay vao file app_texts.dart
+                      style: TextStyle(fontSize: 12),
+                    ),
                   ),
                   ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        minimumSize: const Size(40, 28),
-                        padding: const EdgeInsets.only(left: 8, right: 8),
-                        side: const BorderSide(color: AppColors.greenColor)),
-                    child: const Text('Buy Once',
-                        style: TextStyle(
-                            fontSize: 12, color: AppColors.greenColor)),
+                      backgroundColor: Colors.white,
+                      minimumSize: const Size(
+                        40,
+                        28,
+                      ),
+                      padding: const EdgeInsets.only(
+                        left: 8,
+                        right: 8,
+                      ),
+                      side: const BorderSide(
+                        color: AppColors.greenColor,
+                      ),
+                    ),
+                    child: const Text(
+                      'Buy Once', //TODO: dua cai nay vao file app_texts.dart
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: AppColors.greenColor,
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -140,9 +170,9 @@ class _StackChild extends State<StackChild> {
           child: IconButton(
               onPressed: () {
                 setState(() {
-                  icon == 'assets/listFruitsImage/heart_ic.svg'
-                      ? icon = 'assets/listFruitsImage/red_heart_ic.svg'
-                      : icon = 'assets/listFruitsImage/heart_ic.svg';
+                  icon == 'assets/listFruitsImage/heart_ic.svg' //TODO: dua cai nay vao file app_images.dart
+                      ? icon = 'assets/listFruitsImage/red_heart_ic.svg' //TODO: dua cai nay vao file app_images.dart
+                      : icon = 'assets/listFruitsImage/heart_ic.svg'; //TODO: dua cai nay vao file app_images.dart
                 });
               },
               icon: SvgPicture.asset(icon)),
