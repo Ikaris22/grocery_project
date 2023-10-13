@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vippro_project/base/app_colors.dart';
 import 'package:vippro_project/base/app_images.dart';
+import 'package:vippro_project/base/app_strings.dart';
 import 'package:vippro_project/data/mock/list_bakery_items.dart';
 import 'package:vippro_project/data/mock/list_dairy_products.dart';
 import 'package:vippro_project/data/mock/list_fruits.dart';
@@ -23,14 +24,9 @@ class _ExploreScreen extends State<ExploreScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBars(
-        leading: IconButton(
-            onPressed: () {},
-            icon: SvgPicture.asset(
-              AppLogos.backLogo,
-            )),
-        appBarChild: const Text(
-          'Explore',
+      appBar: const AppBars(
+        appBarChild: Text(
+          ExplorePageStrings.appbarTitle,
           style: TextStyle(
               color: AppColors.blackColor,
               fontSize: 23,
@@ -59,8 +55,8 @@ class _ExploreScreen extends State<ExploreScreen> {
         Container(
           margin: const EdgeInsets.only(right: 8, bottom: 8),
           child: TopListviewLabel(
-            title: 'Groceries',
-            textButtonName: 'See all',
+            title: ExplorePageStrings.groceries,
+            textButtonName: ExplorePageStrings.seeAll,
             clickTextButton: () {},
           ),
         ),
@@ -87,8 +83,8 @@ class _ExploreScreen extends State<ExploreScreen> {
         Container(
           margin: const EdgeInsets.only(right: 8, bottom: 8),
           child: TopListviewLabel(
-            title: 'Vegetables',
-            textButtonName: 'See all',
+            title: ExplorePageStrings.vegetables,
+            textButtonName: ExplorePageStrings.seeAll,
             clickTextButton: () {},
           ),
         ),
@@ -115,8 +111,8 @@ class _ExploreScreen extends State<ExploreScreen> {
         Container(
           margin: const EdgeInsets.only(right: 8, bottom: 8),
           child: TopListviewLabel(
-            title: 'Fruits',
-            textButtonName: 'See all',
+            title: ExplorePageStrings.fruits,
+            textButtonName: ExplorePageStrings.seeAll,
             clickTextButton: () {
               Navigator.push(
                   context,
@@ -133,7 +129,7 @@ class _ExploreScreen extends State<ExploreScreen> {
                 itemCount: listFruits.length,
                 itemBuilder: (BuildContext context, int index) {
                   return ListviewItems(
-                      image: listFruits[index].fruitName,
+                      image: listFruits[index].fruitImage,
                       productName: listFruits[index].fruitName,
                       productWeight: listFruits[index].fruitWeight,
                       productPrice: listFruits[index].fruitPrice);
@@ -148,8 +144,8 @@ class _ExploreScreen extends State<ExploreScreen> {
         Container(
           margin: const EdgeInsets.only(right: 8, bottom: 8),
           child: TopListviewLabel(
-            title: 'Dairy Products', //TODO: dua vao trong file app string
-            textButtonName: 'See all', //TODO: dua vao trong file app string
+            title: ExplorePageStrings.dairyProducts,
+            textButtonName: ExplorePageStrings.seeAll,
             clickTextButton: () {},
           ),
         ),
@@ -178,8 +174,8 @@ class _ExploreScreen extends State<ExploreScreen> {
         Container(
           margin: const EdgeInsets.only(right: 8, bottom: 8),
           child: TopListviewLabel(
-            title: 'Bakery Items', //TODO: dua vao trong file app string
-            textButtonName: 'See all', //TODO: dua vao trong file app string
+            title: ExplorePageStrings.bakeryItems,
+            textButtonName: ExplorePageStrings.seeAll,
             clickTextButton: () {},
           ),
         ),

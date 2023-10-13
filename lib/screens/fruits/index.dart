@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vippro_project/base/app_colors.dart';
 import 'package:vippro_project/base/app_images.dart';
+import 'package:vippro_project/base/app_strings.dart';
 import 'package:vippro_project/data/mock/list_fruits.dart';
-import 'package:vippro_project/screens/fruits/widgets/container_listview.dart';
-import 'package:vippro_project/screens/fruits/widgets/stack_child.dart';
+import 'package:vippro_project/screens/fruits/widgets/fruit_items.dart';
 
 class FruitsScreen extends StatefulWidget {
   const FruitsScreen({super.key});
@@ -27,7 +27,7 @@ class _FruitsScreenState extends State<FruitsScreen> {
         leadingWidth: 36,
         backgroundColor: AppColors.greenColor,
         title: const Text(
-          'Fruits', //TODO: dua cai nay vao file app_images.dart
+          FruitPageStrings.appbarTitle,
           style: TextStyle(
             fontWeight: FontWeight.w600,
             fontSize: 23,
@@ -40,55 +40,35 @@ class _FruitsScreenState extends State<FruitsScreen> {
             color: AppColors.greenColor,
           ),
           Container(
-            padding: const EdgeInsets.only(
-              left: 16,
-              right: 16,
-              top: 24,
-            ),
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(
-                topRight: Radius.circular(28),
-                topLeft: Radius.circular(28),
+              padding: const EdgeInsets.only(
+                left: 16,
+                right: 16,
+                top: 28,
+                bottom: 12,
               ),
-              color: Colors.white,
-            ),
-            child: ListView.builder(
-                itemCount: (listFruits.length / 2).ceil(),
-                itemBuilder: (BuildContext context, int index) {
-                  //TODO: tach functions o line 58 thanh 1 variable @isVisible roi check
-                  final isVisible = listFruits.length.isOdd && (index * 2 + 1) == listFruits.length;
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      //TODO: xem lai cach tinh nay nhe, phai dung GridView nhe
-                      ContainerListview(
-                        stackChild: StackChild(
-                          //TODO: xem lai cach tinh nay nhe, phai dung GridView nhe
-                          image: listFruits[index * 2].fruitImage,
-                          name: listFruits[index * 2].fruitName,
-                          weight: listFruits[index * 2].fruitWeight,
-                          price: listFruits[index * 2].fruitPrice,
-                        ),
-                      ),
-                      Visibility(
-                        //TODO: xem lai cach tinh nay nhe, phai dung GridView nhe
-                        //TODO: tach functions o line 58 thanh 1 variable @isVisible roi check
-                        visible: isVisible ? false : true,
-                        child: ContainerListview(
-                          stackChild: isVisible
-                              ? null
-                              : StackChild(
-                                  image: listFruits[index * 2 + 1].fruitImage,
-                                  name: listFruits[index * 2 + 1].fruitName,
-                                  weight: listFruits[index * 2 + 1].fruitWeight,
-                                  price: listFruits[index * 2 + 1].fruitPrice,
-                                ),
-                        ),
-                      ),
-                    ],
-                  );
-                }),
-          )
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(32),
+                  topLeft: Radius.circular(32),
+                ),
+                color: Colors.white,
+              ),
+              child: GridView.builder(
+                  itemCount: listFruits.length,
+                  gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 16,
+                    crossAxisSpacing: 16,
+                    mainAxisExtent: MediaQuery.of(context).size.height / 3.9,
+                  ),
+                  itemBuilder: (BuildContext context, int index) {
+                    return FruitItems(
+                      price: listFruits[index].fruitPrice,
+                      weight: listFruits[index].fruitWeight,
+                      name: listFruits[index].fruitName,
+                      image: listFruits[index].fruitImage,
+                    );
+                  }))
         ],
       ),
     );

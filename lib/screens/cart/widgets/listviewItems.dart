@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:vippro_project/base/app_images.dart';
 
 import '../../../base/app_colors.dart';
 import '../../../widgets/count_button.dart';
@@ -94,11 +95,11 @@ class _CartItems extends State<CartItems>{
               child: IconButton(
                   onPressed: widget.clickRemoveItem,
                   icon: SvgPicture.asset(
-                      'assets/cartScreenImg/close_icon.svg')),
+                      AppLogos.closeIcon)),
             )),
         Positioned(
-          top: 60,
-            left: 280,
+          top: 64,
+            left: 260,
             child: CountButton(
               onClickSubtract: () {
                 setState(() {

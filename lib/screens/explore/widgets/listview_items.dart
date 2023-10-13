@@ -20,7 +20,12 @@ class ListviewItems extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(right: 16),
-      padding: const EdgeInsets.only(left: 8, right: 8, top: 8, bottom: 4),
+      padding: const EdgeInsets.only(
+        left: 8,
+        right: 8,
+        top: 8,
+        bottom: 4,
+      ),
       width: 108,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
@@ -30,7 +35,10 @@ class ListviewItems extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Image.asset(image),
+              Image.asset(
+                image,
+                height: 52,
+              ),
               Row(
                 children: [
                   Text(

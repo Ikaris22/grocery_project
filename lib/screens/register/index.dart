@@ -24,42 +24,42 @@ class _RegisterState extends State<Register> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBars(
-        leading: null,
-          appBarChild:  SvgPicture.asset(AppLogos.groceryLogo, height: 52),),
+        appBarChild: SvgPicture.asset(AppLogos.groceryLogo, height: 52),
+      ),
       body: ListView(
         children: [
           Container(
             height: MediaQuery.of(context).size.height / 1.268,
-            margin: const EdgeInsets.only(left: 16, right: 16,top: 12),
-            child:  Column(
+            margin: const EdgeInsets.only(left: 16, right: 16, top: 12),
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 const Row(children: [
-                  Text('Register', //TODO: dua vao trong file app string
+                  Text(RegisterPageStrings.register,
                       style: TextStyle(
                           fontSize: 22,
                           color: AppColors.greenColor,
                           fontWeight: FontWeight.w600))
                 ]),
                 const InputField(
-                    textFieldName: RegisterPageString.yourName,
-                    textFieldHintText: RegisterPageString.yourNameHint),
+                    textFieldName: RegisterPageStrings.yourName,
+                    textFieldHintText: RegisterPageStrings.yourNameHint),
                 const InputField(
-                    textFieldName: RegisterPageString.emailId,
-                    textFieldHintText: RegisterPageString.emailIdHint),
+                    textFieldName: RegisterPageStrings.emailId,
+                    textFieldHintText: RegisterPageStrings.emailIdHint),
                 const InputField(
-                    textFieldName: RegisterPageString.password,
-                    textFieldHintText: RegisterPageString.passwordHint),
+                    textFieldName: RegisterPageStrings.password,
+                    textFieldHintText: RegisterPageStrings.passwordHint),
                 const InputField(
-                    textFieldName: RegisterPageString.confirmPassword,
-                    textFieldHintText: RegisterPageString.confirmPasswordHint),
+                    textFieldName: RegisterPageStrings.confirmPassword,
+                    textFieldHintText: RegisterPageStrings.confirmPasswordHint),
                 const InputField(
-                    textFieldName: RegisterPageString.contactNumber,
-                    textFieldHintText: RegisterPageString.contactNumberHint),
-                 LogElevatedButton(
+                    textFieldName: RegisterPageStrings.contactNumber,
+                    textFieldHintText: RegisterPageStrings.contactNumberHint),
+                LogElevatedButton(
                     buttonWidth: double.infinity,
-                     buttonName: 'Register', //TODO: dua vao trong file app string
-                    onClick: () {}),
+                    buttonName: RegisterPageStrings.register,
+                    onClick: () {}, radius: 10,),
               ],
             ),
           ),
@@ -67,8 +67,8 @@ class _RegisterState extends State<Register> {
             margin: const EdgeInsets.only(left: 16, right: 16),
             child: Column(
               children: [
-                const DividerLine(title: 'Or continue with'), //TODO: dua vao trong file app string
-                const SizedBox(height: 18),
+                const DividerLine(title: RegisterPageStrings.orContinueWith),
+                const SizedBox(height: 16),
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -76,21 +76,21 @@ class _RegisterState extends State<Register> {
                     LogButton(logo: AppLogos.fbLogo, logoName: 'Facebook')
                   ],
                 ),
-                const SizedBox(height: 18),
+                const SizedBox(height: 16),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
-                      RegisterPageString.question,
+                      RegisterPageStrings.question,
                       style: TextStyle(color: AppColors.miniTextColor),
                     ),
                     TextButtonLogin(
-                        textButtonName: 'Login', //TODO: dua vao trong file app string
-                        onClick: (){
+                        textButtonName: RegisterPageStrings.login,
+                        onClick: () {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context)=>const Login()));
+                                  builder: (context) => const Login()));
                         })
                   ],
                 ),

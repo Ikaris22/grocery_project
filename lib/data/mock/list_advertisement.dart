@@ -19,9 +19,3 @@ adSaleOff: '10% off'),
       adContent:'Everyday\nEssentials',
       adSaleOff: '15% off')
 ];
-class BannerAd{
-  static const String adImage = 'assets/adImages/imageAd.png';
-  static const String adBackground ='assets/adImages/backgroundAd.svg';
-  static const String getCashback ='Get 25% Cashback';
-  static const String adProduct = 'on all baby products';
-}

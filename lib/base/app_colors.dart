@@ -10,4 +10,12 @@ class AppColors {
   static const Color backGroundColor = Color.fromRGBO(242, 252, 244, 1);
   static const Color purpleColor = Color.fromRGBO(63, 138, 154, 1);
   static const Color lightGreyColor = Color.fromRGBO(249, 249, 249, 1);
+  static const Color darkGreyColor = Color.fromRGBO(143, 143, 143, 1);
+  static const Color textGreyColor = Color.fromRGBO(101, 101, 101, 1);
+  static const Color ticketGreenColor = Color.fromRGBO(96, 195, 112, 1);
+  static const Color ticketYellowColor = Color.fromRGBO(214, 197, 51, 1);
+  static const Color lightGreen = Color.fromRGBO(116, 202, 130, 0.6);
+  static const Color dividerColor = Color.fromRGBO(244, 244, 244, 1);
+  static const Color paymentTextColor = Color.fromRGBO(155, 155, 155, 1);
+  static const Color lightYellow = Color.fromRGBO(220, 255, 226, 1);
 }

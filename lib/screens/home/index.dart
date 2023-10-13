@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:vippro_project/base/app_colors.dart';
+import 'package:vippro_project/base/app_images.dart';
 import 'package:vippro_project/base/app_strings.dart';
 import 'package:vippro_project/data/mock/deals_of_the_week.dart';
 import 'package:vippro_project/data/mock/feature_items.dart';
@@ -35,9 +36,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       appBar: AppBars(
-          leading: null,
           appBarChild: Container(
-              padding: const EdgeInsets.only(left: 10),
+              padding: const EdgeInsets.only(left: 8),
               height: 48,
               decoration: BoxDecoration(
                   color: AppColors.whiteColor,
@@ -47,14 +47,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   ]),
               child: Row(
                 children: [
-                  SvgPicture.asset('assets/appLogo/icon_search.svg'),
-                  //TODO: tao file app_image.dart roi dua vao trong file
+                  SvgPicture.asset(AppLogos.logoSearch),
                   const SizedBox(width: 20),
                   const SizedBox(
                     width: 320,
                     child: TextField(
                       decoration: InputDecoration(
-                          hintText: HomePageString.hintSearch,
+                          hintText: HomePageStrings.hintSearch,
                           hintStyle: TextStyle(color: AppColors.hintSearchColor, fontSize: 14),
                           border: OutlineInputBorder(borderSide: BorderSide.none),
                           contentPadding: EdgeInsets.symmetric(vertical: 10)),
@@ -79,8 +78,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   itemDot(int currentIndex, int i) {
     return Container(
-      height: 5,
-      width: i == currentIndex ? 15 : 10,
+      height: 4,
+      width: i == currentIndex ? 16 : 12,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(40),
           color: i == currentIndex ? AppColors.greenColor : AppColors.greyColor),
@@ -89,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget advertisement1(double screenHeight) {
     return Container(
-        height: screenHeight / 5.95, //TODO: khong set view cung cho man hinh, se anh huong toi cac man hinh khac
+        height: screenHeight / 5.95,
         margin: const EdgeInsets.only(
           left: 16,
           right: 16,
@@ -120,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           fontSize: 19,
                         ),
                       ),
-                      const SizedBox(height: 10), //TODO: chia het cho 4
+                      const SizedBox(height: 12),
                       Text(
                         listAd[index].adSaleOff,
                         style: const TextStyle(
@@ -142,7 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget indicator() {
     return Container(
-      margin: const EdgeInsets.only(top: 20, bottom: 12), //TODO: chia het cho 4
+      margin: const EdgeInsets.only(top: 20, bottom: 12),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -162,8 +161,8 @@ class _HomeScreenState extends State<HomeScreen> {
         Container(
           margin: const EdgeInsets.only(left: 16, right: 8),
           child: TopListviewLabel(
-            title: 'Top Categories', //TODO: dua vao trong file app string
-            textButtonName: 'Explore all', //TODO: dua vao trong file app string
+            title: HomePageStrings.topCategories,
+            textButtonName: HomePageStrings.exploreAll,
             clickTextButton: () {},
           ),
         ),
@@ -185,7 +184,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Stack(
                     children: [
                       Container(
-                        //TODO: khong set view cung cho man hinh, se anh huong toi cac man hinh khac
                         margin: EdgeInsets.only(top: (screenHeight / 7) - (screenHeight / 9)),
                         height: screenHeight / 9,
                         decoration: BoxDecoration(
@@ -193,7 +191,6 @@ class _HomeScreenState extends State<HomeScreen> {
                             color: AppColors.backGroundColor),
                       ),
                       Container(
-                        //TODO: khong set view cung cho man hinh, se anh huong toi cac man hinh khac
                         margin: EdgeInsets.only(top: (screenHeight / 7) - (screenHeight / 24)),
                         height: screenHeight / 24,
                         decoration: const BoxDecoration(
@@ -223,18 +220,18 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget topProducts(double screenHeight, double screenWidth) {
     return Container(
-      margin: const EdgeInsets.only(top: 5, left: 16),
+      margin: const EdgeInsets.only(top: 4, left: 16),
       child: Column(
         children: [
           Container(
-            margin: const EdgeInsets.only(right: 8, bottom: 5),
+            margin: const EdgeInsets.only(right: 8, bottom: 4),
             child: TopListviewLabel(
-              title: 'Top Products', //TODO: dua vao trong file app string
-              textButtonName: 'Explore all', //TODO: dua vao trong file app string
+              title: HomePageStrings.topProducts,
+              textButtonName: HomePageStrings.exploreAll,
               clickTextButton: () {},
             ),
           ),
-          Container(
+          SizedBox(
             height: screenHeight / 4.7,
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
@@ -249,7 +246,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Stack(
                         children: [
                           Container(
-                            margin: const EdgeInsets.only(top: 10, left: 8),
+                            margin: const EdgeInsets.only(top: 12, left: 8),
                             height: screenHeight / 5.6,
                             width: screenWidth / 3.7,
                             child: Column(
@@ -257,7 +254,6 @@ class _HomeScreenState extends State<HomeScreen> {
                               children: [
                                 Image.asset(
                                   listTopProducts[index].productImage,
-                                  //TODO: khong set view cung cho man hinh, se anh huong toi cac man hinh khac
                                   height: screenHeight / 8,
                                   width: screenWidth / 5.3,
                                 ),
@@ -281,7 +277,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           Container(
                             margin: const EdgeInsets.only(top: 8),
-                            //TODO: khong set view cung cho man hinh, se anh huong toi cac man hinh khac
                             width: screenWidth / 8.3,
                             height: screenHeight / 22,
                             decoration: const BoxDecoration(
@@ -307,21 +302,20 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget advertisement2(double screenHeight) {
     return Container(
-      //TODO: chia het cho 4
         margin: const EdgeInsets.only(top: 20, left: 16, right: 16),
         height: screenHeight / 4.8,
         child: Stack(
           children: [
             ClipRRect(
                 borderRadius: BorderRadius.circular(10),
-                child: SvgPicture.asset(BannerAd.adBackground,
+                child: SvgPicture.asset(BannerAdHomePage.adBackground,
                     fit: BoxFit.cover, allowDrawingOutsideViewBox: true)),
             Container(
               margin: const EdgeInsets.only(top: 48),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Image.asset(BannerAd.adImage),
+                  Image.asset(BannerAdHomePage.adImage),
                 ],
               ),
             ),
@@ -332,7 +326,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text(BannerAd.getCashback,
+                      Text(BannerAdHomePage.getCashback,
                           style: TextStyle(
                               color: AppColors.purpleColor,
                               fontSize: 24,
@@ -343,7 +337,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text(BannerAd.adProduct,
+                      Text(BannerAdHomePage.adProduct,
                           style: TextStyle(
                               color: AppColors.purpleColor,
                               fontSize: 14,
@@ -356,8 +350,8 @@ class _HomeScreenState extends State<HomeScreen> {
             Container(
               margin: const EdgeInsets.only(top: 124, left: 20),
               child: SmallElevatedButton(
-                buttonWidth: 130,
-                buttonName: 'Shop Now', //TODO: dua vao trong file app string
+                buttonWidth: 128,
+                buttonName: HomePageStrings.shopNow,
                 onClick: () {},
               ),
             )
@@ -373,13 +367,13 @@ class _HomeScreenState extends State<HomeScreen> {
           Container(
             margin: const EdgeInsets.only(right: 8, bottom: 5),
             child: TopListviewLabel(
-              title: 'Deals Of The Week', //TODO: dua vao trong file app string
-              textButtonName: 'Explore all', //TODO: dua vao trong file app string
+              title: HomePageStrings.dealsOfTheWeek,
+              textButtonName: HomePageStrings.exploreAll, //TODO: dua vao trong file app string
               clickTextButton: () {},
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(bottom: 10),
+            margin: const EdgeInsets.only(bottom: 12),
             height: screenHeight / 5.5,
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
@@ -419,16 +413,16 @@ class _HomeScreenState extends State<HomeScreen> {
           Container(
             margin: const EdgeInsets.only(
               right: 8,
-              bottom: 5,
+              bottom: 4,
             ),
             child: TopListviewLabel(
-              title: 'Feature Items', //TODO: dua vao trong file app string
-              textButtonName: 'Explore all', //TODO: dua vao trong file app string
+              title: HomePageStrings.featureItems,
+              textButtonName:HomePageStrings.exploreAll,
               clickTextButton: () {},
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(bottom: 50),
+            margin: const EdgeInsets.only(bottom: 48),
             height: screenHeight / 4.75,
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,

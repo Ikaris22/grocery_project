@@ -6,12 +6,14 @@ class LogElevatedButton extends StatelessWidget {
   final double buttonWidth;
   final String buttonName;
   final Function() onClick;
+  final double radius;
 
   const LogElevatedButton({
     super.key,
     required this.buttonWidth,
     required this.buttonName,
     required this.onClick,
+    required this.radius,
   });
 
   @override
@@ -21,19 +23,20 @@ class LogElevatedButton extends StatelessWidget {
       width: buttonWidth,
       height: 48,
       child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: AppColors.greenColor,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppColors.greenColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(radius),
           ),
-          onPressed: onClick,
-          child: Text(
-            buttonName,
-            style: const TextStyle(
-              fontSize: 18,
-            ),
-          ),),
+        ),
+        onPressed: onClick,
+        child: Text(
+          buttonName,
+          style: const TextStyle(
+            fontSize: 18,
+          ),
+        ),
+      ),
     );
   }
 }

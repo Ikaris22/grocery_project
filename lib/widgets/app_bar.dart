@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
 
 class AppBars extends StatelessWidget implements PreferredSizeWidget {
+  final Widget appBarChild;
   const AppBars({
     super.key,
     required this.appBarChild,
-    required this.leading,
   });
-
-  final Widget appBarChild;
-  final Widget? leading;
-
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: leading,
       automaticallyImplyLeading: false,
       toolbarHeight: 56,
       backgroundColor: Colors.white,
@@ -25,7 +20,6 @@ class AppBars extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: true,
     );
   }
-
   @override
   Size get preferredSize => const Size(0, 56);
 }

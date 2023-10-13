@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:vippro_project/base/app_images.dart';
 
 import '../base/app_colors.dart';
 
@@ -42,7 +43,7 @@ class CountButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double checkSize = type == CountButtonType.small ? 32 : 44;
+    final double checkSize = type == CountButtonType.small ? 32 : 52;
     final double checkSizeIcon = type == CountButtonType.small ? 16 : 28;
     return Row(
       children: [
@@ -51,20 +52,20 @@ class CountButton extends StatelessWidget {
           height: checkSize,
           heightIcon: checkSizeIcon,
           onClick: onClickSubtract,
-          icon: 'assets/listFruitsImage/ic_remove.svg',
+          icon: AppLogos.subtractIcon,
         ),
         Text(count,
             style: TextStyle(
               color: AppColors.greenColor,
               fontSize: fontSize,
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w500,
             )),
         _addIcon(
           width: checkSize,
           height: checkSize,
           heightIcon: checkSizeIcon,
           onClick: onClickAdd,
-          icon: 'assets/listFruitsImage/icon_add.svg',
+          icon: AppLogos.addIcon,
         )
       ],
     );

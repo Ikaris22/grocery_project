@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vippro_project/base/app_colors.dart';
 import 'package:vippro_project/base/app_images.dart';
+import 'package:vippro_project/base/app_strings.dart';
 import 'package:vippro_project/screens/account/index.dart';
 import 'package:vippro_project/screens/cart/index.dart';
 import 'package:vippro_project/screens/explore/index.dart';
@@ -40,31 +41,31 @@ class _MainPage extends State<MainPage> {
           items: [
             navBar(
               icon: NavBarIcons.icHome,
-              label: 'Home', //TODO: dua vao trong file app string
+              label: NavbarStrings.home,
               selectedScreen: selectedScreen,
               indexItem: 0,
             ),
             navBar(
               icon: NavBarIcons.icExplore,
-              label: 'Explore', //TODO: dua vao trong file app string
+              label: NavbarStrings.explore,
               selectedScreen: selectedScreen,
               indexItem: 1,
             ),
             navBar(
               icon: NavBarIcons.icCart,
-              label: 'Cart', //TODO: dua vao trong file app string
+              label: NavbarStrings.cart,
               selectedScreen: selectedScreen,
               indexItem: 2,
             ),
             navBar(
               icon: NavBarIcons.icFav,
-              label: 'Favourite', //TODO: dua vao trong file app string
+              label: NavbarStrings.favourite,
               selectedScreen: selectedScreen,
               indexItem: 3,
             ),
             navBar(
               icon: NavBarIcons.icAccount,
-              label: 'Account', //TODO: dua vao trong file app string
+              label: NavbarStrings.account,
               selectedScreen: selectedScreen,
               indexItem: 4,
             ),

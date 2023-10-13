@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:vippro_project/base/app_colors.dart';
 import 'package:vippro_project/base/app_images.dart';
+import 'package:vippro_project/base/app_strings.dart';
 import 'package:vippro_project/data/prefs/prefs.dart';
 import 'package:vippro_project/screens/main_page.dart';
 
@@ -49,7 +50,7 @@ class _SplashState extends State<Splash> {
           ),
           const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [Text('Your needs in just one place', //TODO: dua vao trong file app string
+              children: [Text(SplashStrings.slogan,
                 style: TextStyle(
                     color: AppColors.greenColor,
                     fontSize: 24,

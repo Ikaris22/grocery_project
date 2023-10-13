@@ -7,17 +7,18 @@ class SubscribeButton extends StatelessWidget {
   final Color buttonNameColor;
   final BorderSide? border;
 
-  const SubscribeButton(
-      {super.key,
-      required this.buttonColor,
-      required this.buttonName,
-      required this.onclick,
-      required this.buttonNameColor,
-      required this.border});
+  const SubscribeButton({
+    super.key,
+    required this.buttonColor,
+    required this.buttonName,
+    required this.onclick,
+    required this.buttonNameColor,
+    required this.border,
+  });
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: double.infinity,
+      width: 76,
       height: 28,
       child: ElevatedButton(
         onPressed: onclick,
