@@ -4,7 +4,13 @@ import 'package:vippro_project/base/app_colors.dart';
 import 'package:vippro_project/base/app_images.dart';
 import 'package:vippro_project/base/app_strings.dart';
 import 'package:vippro_project/data/mock/list_fruits.dart';
+import 'package:vippro_project/screens/details/index.dart';
+import 'package:vippro_project/screens/explore/index.dart';
 import 'package:vippro_project/screens/fruits/widgets/fruit_items.dart';
+import 'package:vippro_project/widgets/green_appbar.dart';
+
+import '../../data/local/db_helper.dart';
+import '../../data/model/fruits.dart';
 
 class FruitsScreen extends StatefulWidget {
   const FruitsScreen({super.key});
@@ -14,25 +20,43 @@ class FruitsScreen extends StatefulWidget {
 }
 
 class _FruitsScreenState extends State<FruitsScreen> {
+  // List<Fruit> fruit =[];
+  // @override
+  // void initState() {
+  //   loadFruit();
+  //   super.initState();
+  // }
+
+  // Future<void> loadFruit() async {
+  //   final db = await DBHelper.instance.database;
+  //   final data =  await db.rawQuery('SELECT * FROM fruitTable');
+  //   setState(() {
+  //     fruit = List.generate(data.length, (index) {
+  //       return Fruit(
+  //           id: int.parse(data[index]['id'].toString()),
+  //           image: data[index]['image'].toString(),
+  //           name:data[index]['name'].toString(),
+  //           weight: data[index]['weight'].toString(),
+  //           price: data[index]['price'].toString(),
+  //           count: int.parse(data[index]['count'].toString()),
+  //           isFavourite: int.parse(data[index]['isFavourite'].toString()) == 1,
+  //           isSubscribed: int.parse(data[index]['isSubscribed'].toString()) == 1
+  //       );
+  //     });
+  //   });
+  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 64,
-        elevation: 0,
-        leading: IconButton(
-          onPressed: () {},
-          icon: SvgPicture.asset(AppLogos.backLogoWhite),
-        ),
-        leadingWidth: 36,
-        backgroundColor: AppColors.greenColor,
-        title: const Text(
-          FruitPageStrings.appbarTitle,
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 23,
+      appBar:  GreenAppbar(
+        title: FruitPageStrings.appbarTitle, clickBack: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const ExploreScreen(),
           ),
-        ),
+        );
+      },
       ),
       body: Stack(
         children: [
@@ -55,11 +79,11 @@ class _FruitsScreenState extends State<FruitsScreen> {
               ),
               child: GridView.builder(
                   itemCount: listFruits.length,
-                  gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     mainAxisSpacing: 16,
                     crossAxisSpacing: 16,
-                    mainAxisExtent: MediaQuery.of(context).size.height / 3.9,
+                    mainAxisExtent: 228,
                   ),
                   itemBuilder: (BuildContext context, int index) {
                     return FruitItems(
@@ -67,6 +91,14 @@ class _FruitsScreenState extends State<FruitsScreen> {
                       weight: listFruits[index].fruitWeight,
                       name: listFruits[index].fruitName,
                       image: listFruits[index].fruitImage,
+                      clickDetails: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Details(index: index),
+                          ),
+                        );
+                      },
                     );
                   }))
         ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vippro_project/base/app_strings.dart';
+import 'package:vippro_project/screens/details/index.dart';
 import 'package:vippro_project/widgets/count_button.dart';
 import 'package:vippro_project/widgets/favourite_button.dart';
 
@@ -13,22 +14,26 @@ class FruitItems extends StatefulWidget {
   final String name;
   final String price;
   final String weight;
+  final Function() clickDetails;
 
-  const FruitItems(
-      {super.key,
-      required this.price,
-      required this.weight,
-      required this.name,
-      required this.image});
+  const FruitItems({
+    super.key,
+    required this.price,
+    required this.weight,
+    required this.name,
+    required this.image,
+    required this.clickDetails,
+  });
 
   @override
   State<StatefulWidget> createState() => _FruitItems();
 }
 
 class _FruitItems extends State<FruitItems> {
-  String iconStatus = AppLogos.redHeartIcon;
+  String iconStatus = AppLogos.heartIcon;
   String subscribeStatus = FruitPageStrings.subscribe;
   int count = 1;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -40,7 +45,7 @@ class _FruitItems extends State<FruitItems> {
       child: Stack(
         children: [
           Container(
-            margin: const EdgeInsets.only(top: 28,left: 8,bottom: 16),
+            margin: const EdgeInsets.only(top: 24, left: 8, bottom: 16),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -50,12 +55,19 @@ class _FruitItems extends State<FruitItems> {
                 ),
                 Row(
                   children: [
-                    Text(
-                      widget.name,
-                      style: const TextStyle(
-                          fontSize: 17,
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.textGreyColor),
+                    SizedBox(
+                      height: 36,
+                      child: TextButton(
+                        onPressed: widget.clickDetails,
+                        style: TextButton.styleFrom(padding: EdgeInsets.zero),
+                        child: Text(
+                          widget.name,
+                          style: const TextStyle(
+                              fontSize: 17,
+                              fontWeight: FontWeight.w700,
+                              color: AppColors.textGreyColor),
+                        ),
+                      ),
                     ),
                     const SizedBox(width: 8),
                     Text(
@@ -98,9 +110,10 @@ class _FruitItems extends State<FruitItems> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SubscribeButton(
-                        buttonColor: subscribeStatus == FruitPageStrings.subscribe
-                            ? AppColors.greenColor
-                            : AppColors.darkGreyColor,
+                        buttonColor:
+                            subscribeStatus == FruitPageStrings.subscribe
+                                ? AppColors.greenColor
+                                : AppColors.darkGreyColor,
                         buttonName: subscribeStatus,
                         onclick: () {
                           setState(() {
@@ -111,6 +124,7 @@ class _FruitItems extends State<FruitItems> {
                         },
                         buttonNameColor: AppColors.whiteColor,
                         border: null,
+                        type: SubButtonType.small,
                       ),
                       SubscribeButton(
                         buttonColor: AppColors.backGroundColor,
@@ -118,6 +132,7 @@ class _FruitItems extends State<FruitItems> {
                         onclick: () {},
                         buttonNameColor: AppColors.greenColor,
                         border: const BorderSide(color: AppColors.greenColor),
+                        type: SubButtonType.small,
                       )
                     ],
                   ),
@@ -125,8 +140,8 @@ class _FruitItems extends State<FruitItems> {
               ],
             ),
           ),
-         Positioned(
-           right: 0,
+          Positioned(
+            right: 0,
             top: 4,
             child: FavouriteButton(
                 onClick: () {

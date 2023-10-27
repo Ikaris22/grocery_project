@@ -304,6 +304,7 @@ class _CartScreen extends State<CartScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
                             CartPageStrings.ticket2TextFirst,
@@ -318,7 +319,7 @@ class _CartScreen extends State<CartScreen> {
                             style: TextStyle(
                               color: AppColors.whiteColor,
                               fontSize: 18,
-                              fontWeight: FontWeight.bold,
+                              fontFamily: 'MonserratSemiBold',
                             ),
                           ),
                         ],
@@ -431,8 +432,8 @@ class _CartScreen extends State<CartScreen> {
               BoxShadow(
                 color: Colors.black.withOpacity(0.04),
                 offset: const Offset(0, 0),
-                blurRadius: 0.2,
-                spreadRadius: 1.5,
+                blurRadius: 8,
+                spreadRadius: 4,
               )
             ],
           ),
@@ -526,7 +527,7 @@ class _CartScreen extends State<CartScreen> {
 }
 
 List<String> list = [
-  'Tomorrow,7 AM - 9 PM',
-  '09/10/2023,7 AM - 9 PM',
-  '10/10/2023,7 AM - 9 PM'
+  'Tomorrow, 7 AM - 9 PM',
+  '09/10/2023, 7 AM - 9 PM',
+  '10/10/2023, 7 AM - 9 PM'
 ];

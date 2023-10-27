@@ -37,13 +37,15 @@ class CountButton extends StatelessWidget {
           icon,
           height: heightIcon,
         ),
+        style: IconButton.styleFrom(padding: EdgeInsets.zero
+        ),
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final double checkSize = type == CountButtonType.small ? 32 : 52;
+    final double checkSize = type == CountButtonType.small ? 32 : 48;
     final double checkSizeIcon = type == CountButtonType.small ? 16 : 28;
     return Row(
       children: [

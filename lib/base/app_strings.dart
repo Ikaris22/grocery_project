@@ -1,4 +1,9 @@
-
+class DatabaseStrings {
+  static const String databaseName = 'address.db';
+  static const String tableName = 'addressTable';
+  static const String createDB =
+      'CREATE TABLE addressTable (id INTEGER PRIMARY KEY AUTOINCREMENT, country TEXT, state TEXT, city TEXT, pincode TEXT, type TEXT)';
+}
 class NavbarStrings {
   static const String home = 'Home';
   static const String explore = 'Explore';
@@ -66,13 +71,13 @@ class CartPageStrings {
   static const String appbarTitle = 'My Cart';
   static const String ticketCode = 'code';
   static const String ticket1Code = 'GETFIRST';
-  static const String ticket2Code = 'DOLARR5';
+  static const String ticket2Code = 'DOLLAR5';
   static const String ticket1TextFirst = 'FLAT';
   static const String ticket1TextSecond = '50% off';
   static const String ticket1TextThird = 'on your first order';
   static const String ticket1TextFourth = 'Use coupon code to get OFFER';
   static const String ticket2TextFirst = 'Get';
-  static const String ticket2TextSecond = '5\$ off';
+  static const String ticket2TextSecond = '\$5 off';
   static const String ticket2TextThird = 'on minimum purchase of \$20';
   static const String ticket2TextFourth = 'Applicable on Grocery only..';
   static const String promoCode = 'Promo code can be applied on payment screen';
@@ -86,6 +91,55 @@ class CartPageStrings {
   static const String total = 'Total';
   static const String totalValue = '\$9.97';
   static const String checkoutButton = 'Checkout';
-
-
+}
+class FavouritePageStrings {
+  static const String appbarTitle = 'My Favourite';
+}
+class AccountPageStrings {
+  static const String profile = 'Profile';
+  static const String name = 'George D.';
+  static const String email = '@george31';
+  static const String myOrders = 'My orders';
+  static const String mySubscriptions = 'My Subscriptions';
+  static const String myAddresses = 'My Addresses';
+  static const String faq = 'FAQ';
+  static const String contactUs = 'Contact Us';
+  static const String about = 'About';
+  static const String logOut = 'Log Out';
+}
+class DetailsPageStrings {
+  static const String details = 'Details';
+  static const String specialPrice = 'Special price';
+  static const String saleOff = '(42% off)';
+  static const String description = 'Description';
+  static const String descriptionContent = 'Green apples have less sugar and carbs, and more fiber, protein, potassium, iron, and vitamin K,'
+      ' taking the lead as a healthier variety, although the differences are ever so slight.';
+  static const String relatedItems = 'Related items';
+  static const String pinapple = 'Pinapple';
+  static const String strawberry = 'Strawberry';
+  static const String grapes = 'Grapes';
+}
+class SubscriptionStrings {
+  static const String appbarTitle = 'My Subscription';
+  static const String today = 'Today';
+  static const String date = '(23 September 2021)';
+}
+class MyAddressesStrings {
+  static const String appbarTitle = 'My Addresses';
+  static const String addNewAddress = 'Add New Address';
+}
+class AddNewAddressStrings {
+  static const String appbarTitle = 'Add New Address';
+  static const String country = 'Country';
+  static const String state = 'State';
+  static const String city = 'City';
+  static const String pincode = 'Pincode';
+  static const String home = 'Home';
+  static const String office = 'Office';
+  static const String workOffice = 'Work/Office';
+  static const String other = 'Other';
+  static const String save = 'Save';
+}
+class EditAddressStrings {
+  static const String appbarTitle = 'Edit Address';
 }

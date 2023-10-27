@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        fontFamily: TextFont.themeTextFont,
+        fontFamily: AppFonts.themeTextFont,
         scaffoldBackgroundColor: AppColors.whiteColor,
       ),
       home: const GroceryApp(),

@@ -18,4 +18,12 @@ class AppColors {
   static const Color dividerColor = Color.fromRGBO(244, 244, 244, 1);
   static const Color paymentTextColor = Color.fromRGBO(155, 155, 155, 1);
   static const Color lightYellow = Color.fromRGBO(220, 255, 226, 1);
+  static const Color profileColor = Color.fromRGBO(243, 255, 245, 1) ;
+  static const Color profileTextColor = Color.fromRGBO(112, 112, 112, 1);
+  static const Color relatedItemsColor1 = Color.fromRGBO(255, 234, 209, 1);
+  static const Color relatedItemsColor2 = Color.fromRGBO(255, 168, 59, 1);
+  static const Color relatedItemsColor3 = Color.fromRGBO(255, 86, 86, 1);
+  static const Color subscriptionName = Color.fromRGBO(87, 87, 87, 0.78);
+  static const Color subscriptionQty = Color.fromRGBO(155, 155, 155, 1);
+
 }
