@@ -24,7 +24,7 @@ class _ProfileItem extends State<ProfileItem> {
       children: [
         TextButton(
             onPressed: widget.onClick,
-            child:  Container(
+            child:  SizedBox(
               width: MediaQuery.of(context).size.width-88,
               child: Row(
                   children: [

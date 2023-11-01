@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:vippro_project/base/app_colors.dart';
 import 'package:vippro_project/base/app_fonts.dart';
 import 'package:vippro_project/base/app_strings.dart';
-import 'package:vippro_project/screens/account/index.dart';
+
 import 'package:vippro_project/screens/addNewAddress/index.dart';
 import 'package:vippro_project/screens/editAddress/edit_address.dart';
 import 'package:vippro_project/screens/myAddresses/widget/address_item.dart';
@@ -41,6 +41,7 @@ class _MyAddresses extends State<MyAddresses> {
           city: data[index]['city'].toString(),
           pincode: data[index]['pincode'].toString(),
           type: data[index]['type'].toString(),
+          isCheck: int.parse(data[index]['isCheck'].toString()) == 1,
         );
       });
     });
@@ -52,12 +53,7 @@ class _MyAddresses extends State<MyAddresses> {
       appBar: GreenAppbar(
         title: MyAddressesStrings.appbarTitle,
         clickBack: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const AccountScreen(),
-            ),
-          );
+          Navigator.pop(context);
         },
       ),
       body: Stack(
@@ -84,13 +80,17 @@ class _MyAddresses extends State<MyAddresses> {
                 Row(
                   children: [
                     InkWell(
-                        onTap: () {
-                          Navigator.push(
+                        onTap: () async {
+                          final resultAdd = await Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const AddNewAddress(),
-                            ),
+                                builder: (context) => const AddNewAddress()),
                           );
+                          if (resultAdd == true) {
+                            setState(() {
+                              loadAddress();
+                            });
+                          }
                         },
                         child: SvgPicture.asset(AppLogos.addIconOutlined)),
                     const SizedBox(width: 8),
@@ -108,50 +108,69 @@ class _MyAddresses extends State<MyAddresses> {
                   child: ListView.builder(
                       itemCount: address.length,
                       itemBuilder: (context, index) {
-                        return AddressItem(
-                            country: address[index].country,
-                            state: address[index].state,
-                            city: address[index].city,
-                            pincode: address[index].pincode,
-                            type: address[index].type,
-                            clickEdit: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      EditAddress(editAddress: address[index]),
+                        return Row(
+                          children: [
+                            Checkbox(
+                              shape: const CircleBorder(),
+                              value: address[index].isCheck,
+                              onChanged: (bool? value){
+                                setState(() {
+                                  for (int i=0;i<address.length;i++){
+                                    address[i].isCheck= false;
+                                  }
+                                  address[index].isCheck=true;
+                                });
+                              },
+                            ),
+                            AddressItem(
+                              country: address[index].country,
+                              state: address[index].state,
+                              city: address[index].city,
+                              pincode: address[index].pincode,
+                              type: address[index].type,
+                              clickEdit: () async {
+                                final resultEdit = await Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => EditAddress(editAddress: address[index])),
+                                );
+                                if (resultEdit == true) {
+                                  setState(() {
+                                    loadAddress();
+                                  });
+                                }
+                              },
+                              clickDelete: () => showDialog<String>(
+                                context: context,
+                                builder: (BuildContext context) => AlertDialog(
+                                  title: const Text(
+                                      'Do you want to delete this address?'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(context, 'Cancel'),
+                                      child: const Text('CANCEL'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          if (address[index].id == null) {
+                                          } else {
+                                            deleteAddress(address[index].id!);
+                                            address.removeAt(index);
+                                            Navigator.pop(context);
+                                          }
+                                        });
+                                      },
+                                      child: const Text('OK'),
+                                    ),
+                                  ],
                                 ),
-                              );
-                            },
-                            clickDelete: () => showDialog<String>(
-                                  context: context,
-                                  builder: (BuildContext context) =>
-                                      AlertDialog(
-                                    title: const Text(
-                                        'Do you want to delete this address?'),
-                                    actions: <Widget>[
-                                      TextButton(
-                                        onPressed: () =>
-                                            Navigator.pop(context, 'Cancel'),
-                                        child: const Text('Cancel'),
-                                      ),
-                                      TextButton(
-                                        onPressed: () {
-                                          setState(() {
-                                            if (address[index].id == null) {
-                                            } else {
-                                              deleteAddress(address[index].id!);
-                                              address.removeAt(index);
-                                              Navigator.pop(context);
-                                            }
-                                          });
-                                        },
-                                        child: const Text('OK'),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                            iconType: checkIconType(index: index));
+                              ),
+                              iconType: checkIconType(index: index),
+                            )
+                          ],
+                        );
                       }),
                 )
               ],

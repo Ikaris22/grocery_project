@@ -36,7 +36,7 @@ class _EditAddress extends State<EditAddress> {
   late bool checkOffice = widget.editAddress.type == 'Office' ? true : false;
   late bool checkOther = widget.editAddress.type == 'Other' ? true : false;
 
-  dialogMising() {
+  dialogMissing() {
     return showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
@@ -53,46 +53,6 @@ class _EditAddress extends State<EditAddress> {
         ],
       ),
     );
-  }
-
-  dialogComplete() {
-    return showDialog<String>(
-      context: context,
-      builder: (BuildContext context) => AlertDialog(
-        title: const Column(
-          children: [
-            Text('Your address has been saved'),
-          ],
-        ),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () {
-              setState(() {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const MyAddresses(),
-                  ),
-                );
-              });
-            },
-            child: const Text('OK'),
-          ),
-        ],
-      ),
-    );
-  }
-
-  String checkType() {
-    if (checkOffice == true) {
-      return 'Office';
-    } else {
-      if (checkHome == true) {
-        return 'Home';
-      } else {
-        return 'Other';
-      }
-    }
   }
 
   dialogCheck() {
@@ -128,6 +88,42 @@ class _EditAddress extends State<EditAddress> {
       ),
     );
   }
+  dialogComplete() {
+    return showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Column(
+          children: [
+            Text('Your address has been saved'),
+          ],
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              setState(() {
+                Navigator.pop(context);
+                Navigator.pop(context,true);
+              });
+            },
+            child: const Text('OK'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  String checkType() {
+    if (checkOffice == true) {
+      return 'Office';
+    } else {
+      if (checkHome == true) {
+        return 'Home';
+      } else {
+        return 'Other';
+      }
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -135,12 +131,7 @@ class _EditAddress extends State<EditAddress> {
       appBar: GreenAppbar(
         title: EditAddressStrings.appbarTitle,
         clickBack: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const MyAddresses(),
-            ),
-          );
+          Navigator.pop(context);
         },
       ),
       body: Stack(
@@ -180,7 +171,7 @@ class _EditAddress extends State<EditAddress> {
                       const SizedBox(height: 16),
                       AddressTextField(
                         textFieldName: widget.editAddress.city,
-                        controller: cityController ,
+                        controller: cityController,
                       ),
                       const SizedBox(height: 16),
                       AddressTextField(
@@ -264,7 +255,7 @@ class _EditAddress extends State<EditAddress> {
                               (checkHome == false &&
                                   checkOther == false &&
                                   checkOffice == false)) {
-                            dialogMising();
+                            dialogMissing();
                           } else {
                             dialogCheck();
                           }

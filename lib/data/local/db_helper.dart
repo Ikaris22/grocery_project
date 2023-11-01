@@ -35,22 +35,24 @@ Future<void> _onCreate(Database db, int version) async {
   final createDB = db.execute(DatabaseStrings.createDB);
   return createDB;
 }
+
 Future<void> insertAddress(Address address) async {
   final db = await DBHelper.instance.database;
   await db.insert(
-    'addressTable',
+    DatabaseStrings.tableName,
     address.toMapConvert(),
   );
 }
 
 Future<int> deleteAddress(int id) async {
   final db = await DBHelper.instance.database;
-  return await db.delete('addressTable', where: 'id = ?', whereArgs: [id]);
+  return await db.delete(DatabaseStrings.tableName, where: 'id = ?', whereArgs: [id]);
 }
+
 Future<void> updateAddress(Address address) async {
   final db = await DBHelper.instance.database;
   await db.update(
-    'addressTable',
+    DatabaseStrings.tableName,
     address.toMapConvert(),
     where: 'id = ?',
     whereArgs: [address.id],

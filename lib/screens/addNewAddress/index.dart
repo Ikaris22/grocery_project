@@ -79,14 +79,14 @@ class _AddNewAddress extends State<AddNewAddress> {
             onPressed: () {
               Navigator.of(context).pop();
             },
-            child: const Text('Cancel'),
+            child: const Text('CANCEL'),
           ),
           TextButton(
             onPressed: () {
               setState(() {
                 Navigator.of(context).pop();
-                insertAddress(newAddress);
                 dialogComplete();
+                insertAddress(newAddress);
               });
             },
             child: const Text('OK'),
@@ -103,34 +103,13 @@ class _AddNewAddress extends State<AddNewAddress> {
         title: const Column(
           children: [
             Text('Your address has been saved'),
-            Text(
-              'Do you want to save another address?',
-              style: TextStyle(color: AppColors.greenColor),
-            )
           ],
         ),
         actions: <Widget>[
           TextButton(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const MyAddresses(),
-                ),
-              );
-            },
-            child: const Text('Cancel'),
-          ),
-          TextButton(
-            onPressed: () {
-              setState(() {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const AddNewAddress(),
-                  ),
-                );
-              });
+              Navigator.pop(context);
+              Navigator.pop(context,true);
             },
             child: const Text('OK'),
           ),
@@ -145,12 +124,7 @@ class _AddNewAddress extends State<AddNewAddress> {
       appBar: GreenAppbar(
         title: AddNewAddressStrings.appbarTitle,
         clickBack: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const MyAddresses(),
-            ),
-          );
+          Navigator.pop(context);
         },
       ),
       body: Stack(

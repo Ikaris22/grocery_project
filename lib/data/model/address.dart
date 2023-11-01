@@ -5,6 +5,7 @@ class Address {
   final String city;
   final String pincode;
   final String type;
+   bool isCheck;
   Address({
     required this.id,
     required this.country,
@@ -12,6 +13,7 @@ class Address {
     required this.city,
     required this.pincode,
     required this.type,
+     this.isCheck = false
   });
   Map<String, dynamic> toMapConvert() {
     return {
@@ -20,7 +22,8 @@ class Address {
       'state': state,
       'city': city,
       'pincode': pincode,
-      'type': type
+      'type': type,
+      'isCheck': isCheck ? 1 : 0,
     };
   }
 }

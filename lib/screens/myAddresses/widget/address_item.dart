@@ -32,85 +32,71 @@ class AddressItem extends StatefulWidget {
 }
 
 class _AddressItem extends State<AddressItem> {
-  bool isChecked = false;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Checkbox(
-            shape: const CircleBorder(),
-            value: isChecked,
-            onChanged: (bool? value) {
-              setState(() {
-                isChecked = value!;
-              });
-            }),
-        Expanded(
-          child: Container(
-            padding: const EdgeInsets.all(20),
-            margin: const EdgeInsets.only(top: 20),
-            height: 160,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                color: AppColors.whiteColor,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.04),
-                    offset: const Offset(0, 0),
-                    blurRadius: 5,
-                    spreadRadius: 2,
-                  )
-                ]),
-            child: Column(
+    return Expanded(
+      child: Container(
+        padding: const EdgeInsets.all(20),
+        margin: const EdgeInsets.only(top: 20),
+        height: 160,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            color: AppColors.whiteColor,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.04),
+                offset: const Offset(0, 0),
+                blurRadius: 5,
+                spreadRadius: 2,
+              )
+            ]),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
-                      children: [
-                        SvgPicture.asset(
-                          widget.iconType,
-                          height: 20,
-                        ),
-                        const SizedBox(width: 8),
-                        Text(
-                          widget.type,
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )
-                      ],
+                    SvgPicture.asset(
+                      widget.iconType,
+                      height: 20,
                     ),
-                    Row(
-                      children: [
-                        InkWell(
-                          onTap: widget.clickEdit,
-                          child: SvgPicture.asset(AppLogos.editAddress),
-                        ),
-                        const SizedBox(width: 12),
-                        InkWell(
-                          onTap: widget.clickDelete,
-                          child: SvgPicture.asset(AppLogos.deleteAddress),
-                        ),
-                      ],
+                    const SizedBox(width: 8),
+                    Text(
+                      widget.type,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     )
                   ],
                 ),
-                const SizedBox(height: 20),
-                SizedBox(
-                  width: 200,
-                  child: Text(
-                    '${widget.country}, ${widget.state}, ${widget.city}, ${widget.pincode}',
-                    style:
-                        const TextStyle(fontFamily: AppFonts.monserratRegular),
-                  ),
-                ),
+                Row(
+                  children: [
+                    InkWell(
+                      onTap: widget.clickEdit,
+                      child: SvgPicture.asset(AppLogos.editAddress),
+                    ),
+                    const SizedBox(width: 12),
+                    InkWell(
+                      onTap: widget.clickDelete,
+                      child: SvgPicture.asset(AppLogos.deleteAddress),
+                    ),
+                  ],
+                )
               ],
             ),
-          ),
+            const SizedBox(height: 20),
+            SizedBox(
+              width: 200,
+              child: Text(
+                '${widget.country}, ${widget.state}, ${widget.city}, ${widget.pincode}',
+                style: const TextStyle(fontFamily: AppFonts.monserratRegular),
+              ),
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }
