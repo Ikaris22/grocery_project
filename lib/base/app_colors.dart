@@ -25,5 +25,6 @@ class AppColors {
   static const Color relatedItemsColor3 = Color.fromRGBO(255, 86, 86, 1);
   static const Color subscriptionName = Color.fromRGBO(87, 87, 87, 0.78);
   static const Color subscriptionQty = Color.fromRGBO(155, 155, 155, 1);
+  static const Color faqTextfeild = Color.fromRGBO(137, 137, 137, 1);
 
 }

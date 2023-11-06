@@ -46,7 +46,11 @@ Future<void> insertAddress(Address address) async {
 
 Future<int> deleteAddress(int id) async {
   final db = await DBHelper.instance.database;
-  return await db.delete(DatabaseStrings.tableName, where: 'id = ?', whereArgs: [id]);
+  return await db.delete(
+    DatabaseStrings.tableName,
+    where: 'id = ?',
+    whereArgs: [id],
+  );
 }
 
 Future<void> updateAddress(Address address) async {

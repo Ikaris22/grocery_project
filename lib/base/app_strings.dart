@@ -139,7 +139,58 @@ class AddNewAddressStrings {
   static const String workOffice = 'Work/Office';
   static const String other = 'Other';
   static const String save = 'Save';
+  static const String pinCodeSnackBar = 'PinCode must be numeric and have 6 characters';
 }
 class EditAddressStrings {
   static const String appbarTitle = 'Edit Address';
+}
+class FaqStrings {
+  static const String appBarTitle = 'FAQ';
+  static const String question1 = 'Where do you Deliver?';
+  static const String content1 = 'Placing an order is very simple. Just register on the SG Grocery website/mobile application, pick your choice of products with a wide range of product selection in the online store and proceed to checkout or just call customer care and place an order. i.e. 1800-123-1947';
+  static const String question2 = 'How can I order ar SG Grocery?';
+  static const String content2 = 'Placing an order is very simple. Just register on the SG Grocery website/mobile application, pick your choice of products with a wide range of product selection in the online store and proceed to checkout or just call customer care and place an order. i.e. 1800-123-1947';
+  static const String question3 = 'How do I know at what time I will receive my Delivery?';
+  static const String content3 = 'Placing an order is very simple. Just register on the SG Grocery website/mobile application, pick your choice of products with a wide range of product selection in the online store and proceed to checkout or just call customer care and place an order. i.e. 1800-123-1947';
+  static const String question4 = 'What is minimum order value?';
+  static const String content4 = 'Placing an order is very simple. Just register on the SG Grocery website/mobile application, pick your choice of products with a wide range of product selection in the online store and proceed to checkout or just call customer care and place an order. i.e. 1800-123-1947';
+  static const String question5 = 'What if I want to return something?';
+  static const String content5 = 'Placing an order is very simple. Just register on the SG Grocery website/mobile application, pick your choice of products with a wide range of product selection in the online store and proceed to checkout or just call customer care and place an order. i.e. 1800-123-1947';
+  static const String titleQuestion = 'Not Listed Your Question/Query?';
+  static const String hintText = 'Write your Question/Query here';
+  static const String buttonName = 'Submit';
+}
+class MyOrdersStrings{
+  static const String appBarTitle = 'My Orders';
+  static const String title = 'Order History';
+}
+class ContactUsStrings{
+  static const String appBarTitle = 'Contact Us';
+  static const String getInTouch = 'Get In Touch!';
+  static const String getInTouchDetail = 'One of our workspace experts will reach out to you based on your communicatoin preferences.';
+  static const String yourDetails = 'Your Details';
+  static const String firstName = 'First Name';
+  static const String lastName = 'Last Name';
+  static const String email = 'Email';
+  static const String phoneNumber = 'Phone Number';
+  static const String addInfo = 'Additional Info';
+  static const String buttonName = 'Send Message';
+  static const String addressInfo = '2464 Royal Ln. Mesa, New Jersey 45463';
+  static const String phoneInfo = '+1 (773) 600-4866 , +1 (773) 600-4875';
+  static const String emailInfo = 'sggrocery@gmail.com';
+}
+class AboutStrings {
+  static const String appBarTitle = 'About';
+  static const String content1 = 'What began little, with a solitary idea of a store that provides rebate and the basic thought of moving more for less, has become in the course of the last 10 years into the biggest retailer in this whole country.';
+  static const String content2 = 'Every week, about 265 million clients and individuals visit our in excess of 13,200 stores under 55 standards in 27 nations and eCommerce sites in 4 nations. With financial year 2018 income of \$500.3 billion, ‘Organization Name’ utilizes over 2.2 million partners around the world.';
+  static const String content3 = 'SG Grocery keeps on being an innovator in support ability, corporate magnanimity and work opportunity. It’s everything part of our relentless promise to making openings and conveying an incentive to clients and networks the world over.';
+  static const String whyChooseUs = '~ Why Choose us? ~';
+  static const String weDoNot = 'We do not buy from the open market & traders.';
+  static const String detail = 'We would like to give the best to our valuable customer that’s why our experts check quality of every products before we deliver it to you and promises to do further to keep faith constant.';
+  static const String organic = '100% Organic Food';
+  static const String fastDelivery = 'Fast Delivery';
+  static const String service = '24/7 Service';
+  static const String secure = 'Secure Payment';
+  static const String privacyPolicy = 'Privacy Policy';
+  static const String termsAndServices = 'Terms And Services';
 }

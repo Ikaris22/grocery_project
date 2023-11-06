@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:vippro_project/base/app_colors.dart';
 import 'package:vippro_project/base/app_images.dart';
 import 'package:vippro_project/base/app_strings.dart';
+import 'package:vippro_project/screens/about/index.dart';
 import 'package:vippro_project/screens/account/widget/profile_item.dart';
+import 'package:vippro_project/screens/contactUs/index.dart';
+import 'package:vippro_project/screens/faq/index.dart';
 import 'package:vippro_project/screens/myAddresses/index.dart';
+import 'package:vippro_project/screens/myOrders/index.dart';
 
 import '../subscriptions/index.dart';
 
@@ -70,7 +74,14 @@ class _AccountScreenState extends State<AccountScreen> {
                     ProfileItem(
                       icon: AppLogos.myOrders,
                       title: AccountPageStrings.myOrders,
-                      onClick: () {},
+                      onClick: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const MyOrders(),
+                          ),
+                        );
+                      },
                     ),
                     ProfileItem(
                       icon: AppLogos.mySubscriptions,
@@ -99,17 +110,38 @@ class _AccountScreenState extends State<AccountScreen> {
                     ProfileItem(
                       icon: AppLogos.faq,
                       title: AccountPageStrings.faq,
-                      onClick: () {},
+                      onClick: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const FaqScreen(),
+                          ),
+                        );
+                      },
                     ),
                     ProfileItem(
                       icon: AppLogos.contactUs,
                       title: AccountPageStrings.contactUs,
-                      onClick: () {},
+                      onClick: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ContactUs(),
+                          ),
+                        );
+                      },
                     ),
                     ProfileItem(
                       icon: AppLogos.about,
                       title: AccountPageStrings.about,
-                      onClick: () {},
+                      onClick: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const About(),
+                          ),
+                        );
+                      },
                     ),
                     ProfileItem(
                       icon: AppLogos.logOut,

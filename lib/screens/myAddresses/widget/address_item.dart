@@ -37,10 +37,14 @@ class _AddressItem extends State<AddressItem> {
     return Expanded(
       child: Container(
         padding: const EdgeInsets.all(20),
-        margin: const EdgeInsets.only(top: 20),
+        margin: const EdgeInsets.only(
+          top: 8,
+          bottom: 12,
+          right: 8
+        ),
         height: 160,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(16),
             color: AppColors.whiteColor,
             boxShadow: [
               BoxShadow(

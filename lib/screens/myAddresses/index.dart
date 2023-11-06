@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gap/gap.dart';
 import 'package:vippro_project/base/app_colors.dart';
 import 'package:vippro_project/base/app_fonts.dart';
 import 'package:vippro_project/base/app_strings.dart';
@@ -87,9 +88,7 @@ class _MyAddresses extends State<MyAddresses> {
                                 builder: (context) => const AddNewAddress()),
                           );
                           if (resultAdd == true) {
-                            setState(() {
-                              loadAddress();
-                            });
+                            loadAddress();
                           }
                         },
                         child: SvgPicture.asset(AppLogos.addIconOutlined)),
@@ -104,6 +103,7 @@ class _MyAddresses extends State<MyAddresses> {
                     )
                   ],
                 ),
+                const Gap(4),
                 Expanded(
                   child: ListView.builder(
                       itemCount: address.length,
@@ -113,12 +113,30 @@ class _MyAddresses extends State<MyAddresses> {
                             Checkbox(
                               shape: const CircleBorder(),
                               value: address[index].isCheck,
-                              onChanged: (bool? value){
+                              onChanged: (bool? value) {
                                 setState(() {
-                                  for (int i=0;i<address.length;i++){
-                                    address[i].isCheck= false;
+                                  for (int i = 0; i < address.length; i++) {
+                                    address[i].isCheck = false;
+                                    updateAddress(Address(
+                                      id: address[i].id,
+                                      country: address[i].country,
+                                      state: address[i].state,
+                                      city: address[i].city,
+                                      pincode: address[i].pincode,
+                                      type: address[i].type,
+                                      isCheck: false,
+                                    ));
                                   }
-                                  address[index].isCheck=true;
+                                  address[index].isCheck = true;
+                                  updateAddress(Address(
+                                    id: address[index].id,
+                                    country: address[index].country,
+                                    state: address[index].state,
+                                    city: address[index].city,
+                                    pincode: address[index].pincode,
+                                    type: address[index].type,
+                                    isCheck: true,
+                                  ));
                                 });
                               },
                             ),
@@ -132,12 +150,11 @@ class _MyAddresses extends State<MyAddresses> {
                                 final resultEdit = await Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => EditAddress(editAddress: address[index])),
+                                      builder: (context) => EditAddress(
+                                          editAddress: address[index])),
                                 );
                                 if (resultEdit == true) {
-                                  setState(() {
-                                    loadAddress();
-                                  });
+                                  loadAddress();
                                 }
                               },
                               clickDelete: () => showDialog<String>(

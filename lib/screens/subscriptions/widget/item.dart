@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vippro_project/base/app_fonts.dart';
+import 'package:vippro_project/base/app_images.dart';
 import 'package:vippro_project/base/app_strings.dart';
 
 import '../../../base/app_colors.dart';
@@ -106,34 +108,7 @@ class _SubscriptionItem extends State<SubscriptionItem> {
                         topLeft: Radius.circular(12),
                         bottomRight: Radius.circular(12)),
                     color: AppColors.greenColor),
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      children: [Text('M'), Text('.')],
-                    ),
-                    Column(
-                      children: [Text('T'), Text('.')],
-                    ),
-                    Column(
-                      children: [Text('W'), Text('.')],
-                    ),
-                    Column(
-                      children: [Text('T'), Text('.')],
-                    ),
-                    Column(
-                      children: [Text('F'), Text('.')],
-                    ),
-                    Column(
-                      children: [Text('S'), Text('.')],
-                    ),
-                    Column(
-                      children: [
-                        Text('S'),
-                      ],
-                    ),
-                  ],
-                )))
+                child: SvgPicture.asset(AppLogos.calendarSubscription)))
       ],
     );
   }

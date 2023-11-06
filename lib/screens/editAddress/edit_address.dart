@@ -54,6 +54,24 @@ class _EditAddress extends State<EditAddress> {
       ),
     );
   }
+  bool checkPincode() {
+    RegExp regex = RegExp(r"^\d{6}$");
+    return regex.hasMatch(pincodeController.text);
+  }
+
+  snackBar() {
+    return SnackBar(
+      content: const Text(
+        AddNewAddressStrings.pinCodeSnackBar,
+        style: TextStyle(fontSize: 20),
+      ),
+      action: SnackBarAction(
+        label: 'OK',
+        onPressed: () {},
+      ),
+    );
+  }
+
 
   dialogCheck() {
     return showDialog<String>(
@@ -78,6 +96,7 @@ class _EditAddress extends State<EditAddress> {
                 city: cityController.text,
                 pincode: pincodeController.text,
                 type: checkType(),
+                isCheck: widget.editAddress.isCheck,
               ));
               Navigator.of(context).pop();
               dialogComplete();
@@ -100,10 +119,8 @@ class _EditAddress extends State<EditAddress> {
         actions: <Widget>[
           TextButton(
             onPressed: () {
-              setState(() {
-                Navigator.pop(context);
-                Navigator.pop(context,true);
-              });
+              Navigator.pop(context);
+              Navigator.pop(context,true);
             },
             child: const Text('OK'),
           ),
@@ -257,7 +274,12 @@ class _EditAddress extends State<EditAddress> {
                                   checkOffice == false)) {
                             dialogMissing();
                           } else {
-                            dialogCheck();
+                            if (checkPincode() == true) {
+                              dialogCheck();
+                            } else {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar());
+                            }
                           }
                         });
                       },

@@ -96,6 +96,24 @@ class _AddNewAddress extends State<AddNewAddress> {
     );
   }
 
+  bool checkPincode() {
+    RegExp regex = RegExp(r"^\d{6}$");
+    return regex.hasMatch(pincodeController.text);
+  }
+
+  snackBar() {
+    return SnackBar(
+      content: const Text(
+        AddNewAddressStrings.pinCodeSnackBar,
+        style: TextStyle(fontSize: 20),
+      ),
+      action: SnackBarAction(
+        label: 'OK',
+        onPressed: () {},
+      ),
+    );
+  }
+
   dialogComplete() {
     return showDialog<String>(
       context: context,
@@ -109,7 +127,7 @@ class _AddNewAddress extends State<AddNewAddress> {
           TextButton(
             onPressed: () {
               Navigator.pop(context);
-              Navigator.pop(context,true);
+              Navigator.pop(context, true);
             },
             child: const Text('OK'),
           ),
@@ -252,7 +270,12 @@ class _AddNewAddress extends State<AddNewAddress> {
                                   checkOffice == false)) {
                             dialogMising();
                           } else {
-                            dialogCheck();
+                            if (checkPincode() == true) {
+                              dialogCheck();
+                            } else {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar());
+                            }
                           }
                         });
                       },

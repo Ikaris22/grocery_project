@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gap/gap.dart';
 import 'package:vippro_project/base/app_colors.dart';
 import 'package:vippro_project/base/app_strings.dart';
 import 'package:vippro_project/data/mock/subscription.dart';
@@ -154,6 +155,8 @@ class _MySubscription extends State<MySubscription> {
                                 ));
                           }),
                     ),
+                    const Gap(32),
+                    Image.asset(AppImages.bannerSubscription)
                   ],
                 ))
           ],

@@ -31,6 +31,14 @@ class AppLogos{
   static const String otherIcon = 'assets/appLogo/other_ic.svg';
   static const String editAddress = 'assets/appLogo/edit_address.svg';
   static const String deleteAddress = 'assets/appLogo/delete_address.svg';
+  static const String addressInfo = 'assets/appLogo/address_ic.svg';
+  static const String phoneInfo = 'assets/appLogo/phone_ic.svg';
+  static const String emailInfo = 'assets/appLogo/email_ic.svg';
+  static const String organic = 'assets/appLogo/organic.svg';
+  static const String fastDelivery = 'assets/appLogo/fast_delivery.svg';
+  static const String service = 'assets/appLogo/service.svg';
+  static const String secure = 'assets/appLogo/secure.svg';
+  static const String calendarSubscription = 'assets/subscriptionImage/calendar.svg';
 }
 class NavBarIcons{
   static const String icHome = 'assets/navBarIcon/ic_home.svg';
@@ -50,4 +58,8 @@ class AppImages{
   static const String relatedItems1 = 'assets/appImages/related_items1.png';
   static const String relatedItems2 = 'assets/appImages/related_items2.png';
   static const String relatedItems3 = 'assets/appImages/related_items3.png';
+  static const String flag = 'assets/appImages/flag.png';
+  static const String deliverImage = 'assets/appImages/deliverImage.png';
+  static const String fruitImage = 'assets/appImages/fruit_image.png';
+  static const String bannerSubscription = 'assets/subscriptionImage/frame.png';
 }
