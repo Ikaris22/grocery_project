@@ -5,6 +5,8 @@ import 'package:vippro_project/base/app_strings.dart';
 import 'package:vippro_project/screens/about/widget/policy_item.dart';
 import 'package:vippro_project/screens/about/widget/special_item.dart';
 import 'package:vippro_project/screens/about/widget/text_item.dart';
+import 'package:vippro_project/screens/privacyPolicy/index.dart';
+import 'package:vippro_project/screens/termsOfServices/index.dart';
 import 'package:vippro_project/widgets/green_appbar.dart';
 
 import '../../base/app_colors.dart';
@@ -62,8 +64,28 @@ class About extends StatelessWidget {
                     ),
                   ),
                   banner(widthSize),
-                  const PolicyItem(text: AboutStrings.privacyPolicy),
-                  const PolicyItem(text: AboutStrings.termsAndServices),
+                   PolicyItem(
+                    text: AboutStrings.privacyPolicy,
+                    onClick: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const PrivacyPolicy(),
+                        ),
+                      );
+                    },
+                  ),
+                   PolicyItem(
+                    text: AboutStrings.termsAndServices,
+                    onClick: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const TermsOfServices(),
+                        ),
+                      );
+                    },
+                  ),
                   const Gap(40),
                 ],
               ),

@@ -102,63 +102,65 @@ class _MySubscription extends State<MySubscription> {
                   color: Colors.white,
                 ),
                 child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        const Text(
-                          SubscriptionStrings.today,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
+                    children: [
+                      Row(
+                        children: [
+                          const Text(
+                            SubscriptionStrings.today,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
                           ),
-                        ),
-                        const SizedBox(width: 4),
-                        const Text(
-                          SubscriptionStrings.date,
-                          style: TextStyle(
-                            fontFamily: 'MonserratRegular',
-                            fontSize: 17,
+                          const SizedBox(width: 4),
+                          const Text(
+                            SubscriptionStrings.date,
+                            style: TextStyle(
+                              fontFamily: 'MonserratRegular',
+                              fontSize: 17,
+                            ),
                           ),
-                        ),
-                        IconButton(
-                            onPressed: () {},
-                            icon: SvgPicture.asset(AppLogos.calendarIcon))
-                      ],
-                    ),
-                    SizedBox(
-                      height: 380,
-                      child: ListView.builder(
-                          itemCount: listSubscription.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Container(
-                                height: 116,
-                                margin: index == listSubscription.length - 1
-                                    ? const EdgeInsets.only(bottom: 0)
-                                    : const EdgeInsets.only(bottom: 16),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(12),
-                                    color: AppColors.whiteColor,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.black.withOpacity(0.04),
-                                        offset: const Offset(0, 3),
-                                        blurRadius: 3,
-                                        spreadRadius: 1,
-                                      )
-                                    ]),
-                                child: SubscriptionItem(
-                                  image: listSubscription[index].image,
-                                  name: listSubscription[index].name,
-                                  weight: listSubscription[index].weight,
-                                  price: listSubscription[index].price,
-                                  qty: listSubscription[index].qty,
-                                ));
-                          }),
-                    ),
-                    const Gap(32),
-                    Image.asset(AppImages.bannerSubscription)
-                  ],
-                ))
+                          IconButton(
+                              onPressed: () {},
+                              icon: SvgPicture.asset(AppLogos.calendarIcon))
+                        ],
+                      ),
+                      SizedBox(
+                        height: 380,
+                        child: ListView.builder(
+                            itemCount: listSubscription.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Container(
+                                  height: 116,
+                                  margin: index == listSubscription.length - 1
+                                      ? const EdgeInsets.only(bottom: 0)
+                                      : const EdgeInsets.only(bottom: 16),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12),
+                                      color: AppColors.whiteColor,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black.withOpacity(0.04),
+                                          offset: const Offset(0, 3),
+                                          blurRadius: 3,
+                                          spreadRadius: 1,
+                                        )
+                                      ]),
+                                  child: SubscriptionItem(
+                                    image: listSubscription[index].image,
+                                    name: listSubscription[index].name,
+                                    weight: listSubscription[index].weight,
+                                    price: listSubscription[index].price,
+                                    qty: listSubscription[index].qty,
+                                  ));
+                            }),
+                      ),
+                      const Gap(32),
+                      Image.asset(AppImages.bannerSubscription),
+
+                    ],
+                  ),
+                )
           ],
         ));
   }

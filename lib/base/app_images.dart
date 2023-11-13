@@ -39,6 +39,7 @@ class AppLogos{
   static const String service = 'assets/appLogo/service.svg';
   static const String secure = 'assets/appLogo/secure.svg';
   static const String calendarSubscription = 'assets/subscriptionImage/calendar.svg';
+  static const String hintPromoCode = 'assets/appLogo/hint_promo_ic.svg';
 }
 class NavBarIcons{
   static const String icHome = 'assets/navBarIcon/ic_home.svg';
@@ -62,4 +63,6 @@ class AppImages{
   static const String deliverImage = 'assets/appImages/deliverImage.png';
   static const String fruitImage = 'assets/appImages/fruit_image.png';
   static const String bannerSubscription = 'assets/subscriptionImage/frame.png';
+  static const String card1 = 'assets/appImages/card1.png';
+  static const String card2 = 'assets/appImages/card2.png';
 }

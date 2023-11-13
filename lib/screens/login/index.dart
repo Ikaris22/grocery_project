@@ -60,17 +60,19 @@ class _LoginState extends State<Login> {
                     textFieldHintText: LoginPageStrings.passwordHint,
                   ),
                   LogElevatedButton(
-                      buttonWidth: double.infinity,
-                      buttonName: LoginPageStrings.login,
-                      onClick: () {
-                        setLogin(true);
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const MainPage(),
-                          ),
-                        );
-                      }, radius: 10,),
+                    buttonWidth: double.infinity,
+                    buttonName: LoginPageStrings.login,
+                    onClick: () {
+                      setLogin(true);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const MainPage(),
+                        ),
+                      );
+                    },
+                    radius: 10,
+                  ),
                 ],
               ),
             ),
@@ -81,7 +83,7 @@ class _LoginState extends State<Login> {
               ),
               child: Column(
                 children: [
-                  const DividerLine(title: LoginPageStrings.login),
+                  const DividerLine(title: LoginPageStrings.orContinueWith),
                   const SizedBox(height: 20),
                   const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

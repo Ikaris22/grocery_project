@@ -1,37 +1,56 @@
+import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
+import 'package:vippro_project/base/app_fonts.dart';
+
 class Orders {
-  final String deliver;
-  final String? deliverTime;
+  final Widget deliver;
   final String image;
   final String blurImage;
-  bool isCheck;
-  Orders(
-      {required this.isCheck,
-      required this.image,
-      required this.deliver,
-      required this.blurImage,
-      required this.deliverTime});
+  bool isDelivered;
+  Orders({
+    required this.isDelivered,
+    required this.image,
+    required this.deliver,
+    required this.blurImage,
+  });
 }
 
 List<Orders> listOrders = [
   Orders(
-    isCheck: false,
+    isDelivered: true,
     image: 'assets/orderImages/order1.png',
-    deliver: 'Arrives Tomorrow',
+    deliver: const Column(
+      children: [
+        Text(
+          'Arrives Tomorrow',
+          style:
+              TextStyle(fontSize: 16, fontFamily: AppFonts.monserratSemiBold),
+        ),
+        Gap(12),
+        Text(
+          '7AM - PM',
+          style: TextStyle(fontSize: 16, fontFamily: AppFonts.monserratRegular),
+        ),
+      ],
+    ),
     blurImage: 'assets/orderImages/blur_order.png',
-    deliverTime: '7AM -PM',
   ),
   Orders(
-    isCheck: false,
+    isDelivered: false,
     image: 'assets/orderImages/order2.png',
-    deliver: 'Delivered on 23 oct',
+    deliver: const Text(
+      'Delivered on 23 oct',
+      style: TextStyle(fontSize: 16, fontFamily: AppFonts.monserratSemiBold),
+    ),
     blurImage: 'assets/orderImages/blur_order.png',
-    deliverTime: '',
   ),
   Orders(
-    isCheck: false,
+    isDelivered: false,
     image: 'assets/orderImages/order3.png',
-    deliver: 'Delivered on 15 oct',
+    deliver: const Text(
+      'Delivered on 15 oct',
+      style: TextStyle(fontSize: 16, fontFamily: AppFonts.monserratSemiBold),
+    ),
     blurImage: 'assets/orderImages/blur_order.png',
-    deliverTime: '',
   ),
 ];

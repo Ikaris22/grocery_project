@@ -78,30 +78,34 @@ class _MyAddresses extends State<MyAddresses> {
             ),
             child: Column(
               children: [
-                Row(
-                  children: [
-                    InkWell(
-                        onTap: () async {
-                          final resultAdd = await Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const AddNewAddress()),
-                          );
-                          if (resultAdd == true) {
-                            loadAddress();
-                          }
-                        },
-                        child: SvgPicture.asset(AppLogos.addIconOutlined)),
-                    const SizedBox(width: 8),
-                    const Text(
-                      MyAddressesStrings.addNewAddress,
-                      style: TextStyle(
-                        fontSize: 21,
-                        color: AppColors.greenColor,
-                        fontFamily: AppFonts.monserratSemiBold,
+                InkWell(
+                  onTap: () async {
+                    final resultAdd = await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const AddNewAddress()),
+                    );
+                    if (resultAdd == true) {
+                      loadAddress();
+                    }
+                  },
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(
+                        AppLogos.addIconOutlined
                       ),
-                    )
-                  ],
+                      const Gap(8),
+                      const Text(
+                        MyAddressesStrings.addNewAddress,
+                        style: TextStyle(
+                          fontSize: 21,
+                          color: AppColors.greenColor,
+                          fontFamily: AppFonts.monserratSemiBold,
+                        ),
+                      ),
+                      const Gap(16),
+                    ],
+                  ),
                 ),
                 const Gap(4),
                 Expanded(

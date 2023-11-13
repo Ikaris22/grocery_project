@@ -14,7 +14,6 @@ class _ViewOrderButton extends State<ViewOrderButton>{
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-
       },
       child: Container(
         height:36,

@@ -48,15 +48,11 @@ class _FruitsScreenState extends State<FruitsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  GreenAppbar(
-        title: FruitPageStrings.appbarTitle, clickBack: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const ExploreScreen(),
-          ),
-        );
-      },
+      appBar: GreenAppbar(
+        title: FruitPageStrings.appbarTitle,
+        clickBack: () {
+          Navigator.pop(context);
+        },
       ),
       body: Stack(
         children: [

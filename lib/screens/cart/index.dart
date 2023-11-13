@@ -9,6 +9,7 @@ import '../../base/app_colors.dart';
 import '../../base/app_images.dart';
 import '../../widgets/app_bar.dart';
 import '../../widgets/ticket.dart';
+import '../payment/payment.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -123,7 +124,14 @@ class _CartScreen extends State<CartScreen> {
               LogElevatedButton(
                 buttonWidth: 200,
                 buttonName: CartPageStrings.checkoutButton,
-                onClick: () {},
+                onClick: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Payment(),
+                    ),
+                  );
+                },
                 radius: 4,
               ),
               const SizedBox(height: 40),

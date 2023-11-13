@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:vippro_project/base/app_fonts.dart';
 import 'package:vippro_project/base/app_strings.dart';
 import 'package:vippro_project/data/local/db_helper.dart';
 import 'package:vippro_project/data/model/address.dart';
-import 'package:vippro_project/screens/myAddresses/index.dart';
 import 'package:vippro_project/widgets/address_textfield.dart';
 import 'package:vippro_project/widgets/green_appbar.dart';
 import 'package:vippro_project/widgets/log_elevated_button.dart';
 
 import '../../base/app_colors.dart';
-import '../../base/app_images.dart';
 
 class AddNewAddress extends StatefulWidget {
   const AddNewAddress({

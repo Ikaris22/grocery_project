@@ -4,7 +4,8 @@ import 'package:vippro_project/base/app_fonts.dart';
 
 class PolicyItem extends StatelessWidget {
   final String text;
-  const PolicyItem({super.key, required this.text});
+  final Function() onClick;
+  const PolicyItem({super.key, required this.text, required this.onClick});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class PolicyItem extends StatelessWidget {
           color: AppColors.profileColor,
           borderRadius: BorderRadius.circular(12)),
       child: InkWell(
-        onTap: () {},
+        onTap: onClick,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

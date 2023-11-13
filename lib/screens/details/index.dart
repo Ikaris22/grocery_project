@@ -1,6 +1,7 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
 import 'package:vippro_project/base/app_images.dart';
 import 'package:vippro_project/base/app_strings.dart';
 import 'package:vippro_project/data/mock/list_fruits.dart';
@@ -118,146 +119,143 @@ class _Details extends State<Details> {
               margin: const EdgeInsets.only(left: 16, right: 16),
               height: MediaQuery.of(context).size.height / 1.64,
               child: SingleChildScrollView(
-                child:
-                  Container(
-                    height: 600,
-                    child: Column(
+                  child: SizedBox(
+                height: 600,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              listFruits[widget.index].fruitName,
-                              style: const TextStyle(
-                                fontSize: 28,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            CountButton(
-                              onClickSubtract: () {
-                                setState(() {
-                                  count > 1 ? count-- : count = count;
-                                });
-                              },
-                              onClickAdd: () {
-                                setState(() {
-                                  count++;
-                                });
-                              },
-                              count: count.toString(),
-                              fontSize: 23,
-                              type: CountButtonType.medium,
-                            )
-                          ],
-                        ),
-                        const Text(
-                          DetailsPageStrings.specialPrice,
-                          style: TextStyle(
-                            fontFamily: 'MonserratRegular',
-                            fontSize: 22,
-                            color: AppColors.greenColor,
-                          ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              listFruits[widget.index].fruitPrice,
-                              style: const TextStyle(
-                                fontSize: 28,
-                                fontWeight: FontWeight.w900,
-                                fontFamily: 'Helvetica',
-                              ),
-                            ),
-                            const Text(
-                              DetailsPageStrings.saleOff,
-                              style: TextStyle(
-                                fontSize: 22,
-                                fontFamily: 'MonserratSemiBold',
-                                color: AppColors.greenColor,
-                              ),
-                            )
-                          ],
-                        ),
-                        const Text(
-                          DetailsPageStrings.description,
-                          style: TextStyle(
+                        Text(
+                          listFruits[widget.index].fruitName,
+                          style: const TextStyle(
+                            fontSize: 28,
                             fontWeight: FontWeight.bold,
-                            fontSize: 20,
                           ),
                         ),
-                        const Text(
-                          DetailsPageStrings.descriptionContent,
-                          style: TextStyle(
-                            color: AppColors.paymentTextColor,
-                            fontSize: 16,
-                            fontFamily: 'MonserratRegular',
-                          ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SubscribeButton(
-                              buttonColor: AppColors.greenColor,
-                              buttonName: FruitPageStrings.subscribe,
-                              onclick: () {
-                                setState(() {
-                                  print(MediaQuery.of(context).size.height);
-                                });
-                              },
-                              buttonNameColor: AppColors.whiteColor,
-                              border: null,
-                              type: SubButtonType.medium,
-                            ),
-                            const SizedBox(width: 24),
-                            SubscribeButton(
-                              buttonColor: AppColors.whiteColor,
-                              buttonName: FruitPageStrings.buyOnce,
-                              onclick: () {},
-                              buttonNameColor: AppColors.greenColor,
-                              border:
-                                  const BorderSide(color: AppColors.greenColor),
-                              type: SubButtonType.medium,
-                            )
-                          ],
-                        ),
-                        const Text(
-                          DetailsPageStrings.relatedItems,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                          ),
-                        ),
-                        const Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            RelatedItems(
-                              image: AppImages.relatedItems1,
-                              name: DetailsPageStrings.pinapple,
-                              topBackgroundColor: AppColors.relatedItemsColor1,
-                              bottomBackgroundColor: AppColors.relatedItemsColor2,
-                            ),
-                            RelatedItems(
-                              image: AppImages.relatedItems2,
-                              name: DetailsPageStrings.strawberry,
-                              topBackgroundColor: AppColors.relatedItemsColor1,
-                              bottomBackgroundColor: AppColors.relatedItemsColor3,
-                            ),
-                            RelatedItems(
-                              image: AppImages.relatedItems3,
-                              name: DetailsPageStrings.grapes,
-                              topBackgroundColor: AppColors.relatedItemsColor1,
-                              bottomBackgroundColor: AppColors.relatedItemsColor2,
-                            ),
-                          ],
+                        CountButton(
+                          onClickSubtract: () {
+                            setState(() {
+                              count > 1 ? count-- : count = count;
+                            });
+                          },
+                          onClickAdd: () {
+                            setState(() {
+                              count++;
+                            });
+                          },
+                          count: count.toString(),
+                          fontSize: 23,
+                          type: CountButtonType.medium,
                         )
                       ],
                     ),
-                  )
-
-              ))
+                    const Text(
+                      DetailsPageStrings.specialPrice,
+                      style: TextStyle(
+                        fontFamily: 'MonserratRegular',
+                        fontSize: 22,
+                        color: AppColors.greenColor,
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          listFruits[widget.index].fruitPrice,
+                          style: const TextStyle(
+                            fontSize: 28,
+                            fontWeight: FontWeight.w900,
+                            fontFamily: 'Helvetica',
+                          ),
+                        ),
+                        const Text(
+                          DetailsPageStrings.saleOff,
+                          style: TextStyle(
+                            fontSize: 22,
+                            fontFamily: 'MonserratSemiBold',
+                            color: AppColors.greenColor,
+                          ),
+                        )
+                      ],
+                    ),
+                    const Text(
+                      DetailsPageStrings.description,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
+                    const Text(
+                      DetailsPageStrings.descriptionContent,
+                      style: TextStyle(
+                        color: AppColors.paymentTextColor,
+                        fontSize: 16,
+                        fontFamily: 'MonserratRegular',
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SubscribeButton(
+                          buttonColor: AppColors.greenColor,
+                          buttonName: FruitPageStrings.subscribe,
+                          onclick: () {
+                            setState(() {
+                              print(MediaQuery.of(context).size.height);
+                            });
+                          },
+                          buttonNameColor: AppColors.whiteColor,
+                          border: null,
+                          type: SubButtonType.medium,
+                        ),
+                        const SizedBox(width: 24),
+                        SubscribeButton(
+                          buttonColor: AppColors.whiteColor,
+                          buttonName: FruitPageStrings.buyOnce,
+                          onclick: () {},
+                          buttonNameColor: AppColors.greenColor,
+                          border: const BorderSide(color: AppColors.greenColor),
+                          type: SubButtonType.medium,
+                        )
+                      ],
+                    ),
+                    const Text(
+                      DetailsPageStrings.relatedItems,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        RelatedItems(
+                          image: AppImages.relatedItems1,
+                          name: DetailsPageStrings.pinapple,
+                          topBackgroundColor: AppColors.relatedItemsColor1,
+                          bottomBackgroundColor: AppColors.relatedItemsColor2,
+                        ),
+                        RelatedItems(
+                          image: AppImages.relatedItems2,
+                          name: DetailsPageStrings.strawberry,
+                          topBackgroundColor: AppColors.relatedItemsColor1,
+                          bottomBackgroundColor: AppColors.relatedItemsColor3,
+                        ),
+                        RelatedItems(
+                          image: AppImages.relatedItems3,
+                          name: DetailsPageStrings.grapes,
+                          topBackgroundColor: AppColors.relatedItemsColor1,
+                          bottomBackgroundColor: AppColors.relatedItemsColor2,
+                        ),
+                      ],
+                    ),
+                    const Gap(8),
+                  ],
+                ),
+              )))
         ],
       ),
     );

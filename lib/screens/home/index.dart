@@ -43,7 +43,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: AppColors.whiteColor,
                   borderRadius: BorderRadius.circular(10),
                   boxShadow: [
-                    BoxShadow(color: Colors.grey.withOpacity(0.2), spreadRadius: 1, blurRadius: 11)
+                    BoxShadow(
+                        color: Colors.grey.withOpacity(0.2),
+                        spreadRadius: 1,
+                        blurRadius: 11)
                   ]),
               child: Row(
                 children: [
@@ -54,8 +57,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: TextField(
                       decoration: InputDecoration(
                           hintText: HomePageStrings.hintSearch,
-                          hintStyle: TextStyle(color: AppColors.hintSearchColor, fontSize: 14),
-                          border: OutlineInputBorder(borderSide: BorderSide.none),
+                          hintStyle: TextStyle(
+                              color: AppColors.hintSearchColor, fontSize: 14),
+                          border:
+                              OutlineInputBorder(borderSide: BorderSide.none),
                           contentPadding: EdgeInsets.symmetric(vertical: 10)),
                     ),
                   ),
@@ -82,7 +87,8 @@ class _HomeScreenState extends State<HomeScreen> {
       width: i == currentIndex ? 16 : 12,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(40),
-          color: i == currentIndex ? AppColors.greenColor : AppColors.greyColor),
+          color:
+              i == currentIndex ? AppColors.greenColor : AppColors.greyColor),
     );
   }
 
@@ -184,23 +190,27 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Stack(
                     children: [
                       Container(
-                        margin: EdgeInsets.only(top: (screenHeight / 7) - (screenHeight / 9)),
+                        margin: EdgeInsets.only(
+                            top: (screenHeight / 7) - (screenHeight / 9)),
                         height: screenHeight / 9,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(30),
                             color: AppColors.backGroundColor),
                       ),
                       Container(
-                        margin: EdgeInsets.only(top: (screenHeight / 7) - (screenHeight / 24)),
+                        margin: EdgeInsets.only(
+                            top: (screenHeight / 7) - (screenHeight / 24)),
                         height: screenHeight / 24,
                         decoration: const BoxDecoration(
                             borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(5), bottomRight: Radius.circular(5)),
+                                bottomLeft: Radius.circular(5),
+                                bottomRight: Radius.circular(5)),
                             color: AppColors.greenColor),
                         child: Center(
                           child: Text(
                             listCategories[index].categoriesName,
-                            style: const TextStyle(fontSize: 11, color: AppColors.whiteColor),
+                            style: const TextStyle(
+                                fontSize: 11, color: AppColors.whiteColor),
                           ),
                         ),
                       ),
@@ -268,7 +278,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   children: [
                                     Text(
                                       listTopProducts[index].price,
-                                      style: const TextStyle(fontWeight: FontWeight.bold),
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.bold),
                                     ),
                                   ],
                                 )
@@ -287,7 +298,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Center(
                               child: Text(
                                 listTopProducts[index].saleOff,
-                                style: const TextStyle(color: AppColors.whiteColor),
+                                style: const TextStyle(
+                                    color: AppColors.whiteColor),
                               ),
                             ),
                           )
@@ -348,7 +360,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             Container(
-              margin: const EdgeInsets.only(top: 124, left: 20),
+              margin: EdgeInsets.only(top: screenHeight / 8.5, left: 24),
               child: SmallElevatedButton(
                 buttonWidth: 128,
                 buttonName: HomePageStrings.shopNow,
@@ -368,7 +380,7 @@ class _HomeScreenState extends State<HomeScreen> {
             margin: const EdgeInsets.only(right: 8, bottom: 5),
             child: TopListviewLabel(
               title: HomePageStrings.dealsOfTheWeek,
-              textButtonName: HomePageStrings.exploreAll, //TODO: dua vao trong file app string
+              textButtonName: HomePageStrings.exploreAll,
               clickTextButton: () {},
             ),
           ),
@@ -385,7 +397,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     width: screenWidth / 2.8,
                     height: 160,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10), color: AppColors.backGroundColor),
+                        borderRadius: BorderRadius.circular(10),
+                        color: AppColors.backGroundColor),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -417,7 +430,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             child: TopListviewLabel(
               title: HomePageStrings.featureItems,
-              textButtonName:HomePageStrings.exploreAll,
+              textButtonName: HomePageStrings.exploreAll,
               clickTextButton: () {},
             ),
           ),
@@ -458,7 +471,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: [
                             Text(
                               listFeatureItem[index].price,
-                              style: const TextStyle(color: AppColors.greenColor),
+                              style:
+                                  const TextStyle(color: AppColors.greenColor),
                             ),
                             Text(listFeatureItem[index].quality)
                           ],

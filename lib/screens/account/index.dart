@@ -9,6 +9,8 @@ import 'package:vippro_project/screens/faq/index.dart';
 import 'package:vippro_project/screens/myAddresses/index.dart';
 import 'package:vippro_project/screens/myOrders/index.dart';
 
+import '../../data/prefs/prefs.dart';
+import '../login/index.dart';
 import '../subscriptions/index.dart';
 
 class AccountScreen extends StatefulWidget {
@@ -146,7 +148,15 @@ class _AccountScreenState extends State<AccountScreen> {
                     ProfileItem(
                       icon: AppLogos.logOut,
                       title: AccountPageStrings.logOut,
-                      onClick: () {},
+                      onClick: () {
+                        setLogin(false);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Login(),
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),
