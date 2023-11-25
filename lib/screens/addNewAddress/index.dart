@@ -191,6 +191,7 @@ class _AddNewAddress extends State<AddNewAddress> {
                 ),
                 const SizedBox(height: 20),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Checkbox(
                         value: checkHome,

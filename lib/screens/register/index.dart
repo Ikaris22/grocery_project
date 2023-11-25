@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:vippro_project/base/app_colors.dart';
@@ -20,6 +21,88 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+  TextEditingController name = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+  TextEditingController confirmPassword = TextEditingController();
+  TextEditingController contactNumber = TextEditingController();
+  dialogConfirmPass() {
+    return showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text('Password and ConfirmPassword must match.'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              setState(() {
+                Navigator.pop(context);
+              });
+            },
+            child: const Text('OK'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  dialogComplete() {
+    return showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text('Successfully registered account.'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              setState(() {
+                Navigator.pop(context);
+                Navigator.pop(context);
+              });
+            },
+            child: const Text('OK'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<UserCredential?> createAccount({required String email, required String password}) async {
+    try {
+      final credential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      return credential;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: const Text(
+            RegisterPageStrings.weakPass,
+            style: TextStyle(fontSize: 20),
+          ),
+          action: SnackBarAction(
+            label: 'OK',
+            onPressed: () {},
+          ),
+        ));
+      } else if (e.code == 'email-already-in-use') {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: const Text(
+            RegisterPageStrings.duplicateEmail,
+            style: TextStyle(fontSize: 20),
+          ),
+          action: SnackBarAction(
+            label: 'OK',
+            onPressed: () {},
+          ),
+        ));
+      }
+    } catch (e) {
+      print(e);
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,25 +124,47 @@ class _RegisterState extends State<Register> {
                           color: AppColors.greenColor,
                           fontWeight: FontWeight.w600))
                 ]),
-                const InputField(
-                    textFieldName: RegisterPageStrings.yourName,
-                    textFieldHintText: RegisterPageStrings.yourNameHint),
-                const InputField(
-                    textFieldName: RegisterPageStrings.emailId,
-                    textFieldHintText: RegisterPageStrings.emailIdHint),
-                const InputField(
-                    textFieldName: RegisterPageStrings.password,
-                    textFieldHintText: RegisterPageStrings.passwordHint),
-                const InputField(
-                    textFieldName: RegisterPageStrings.confirmPassword,
-                    textFieldHintText: RegisterPageStrings.confirmPasswordHint),
-                const InputField(
-                    textFieldName: RegisterPageStrings.contactNumber,
-                    textFieldHintText: RegisterPageStrings.contactNumberHint),
+                InputField(
+                  textFieldName: RegisterPageStrings.yourName,
+                  textFieldHintText: RegisterPageStrings.yourNameHint,
+                  controller: name,
+                ),
+                InputField(
+                  textFieldName: RegisterPageStrings.emailId,
+                  textFieldHintText: RegisterPageStrings.emailIdHint,
+                  controller: email,
+                ),
+                InputField(
+                  textFieldName: RegisterPageStrings.password,
+                  textFieldHintText: RegisterPageStrings.passwordHint,
+                  controller: password,
+                ),
+                InputField(
+                  textFieldName: RegisterPageStrings.confirmPassword,
+                  textFieldHintText: RegisterPageStrings.confirmPasswordHint,
+                  controller: confirmPassword,
+                ),
+                InputField(
+                  textFieldName: RegisterPageStrings.contactNumber,
+                  textFieldHintText: RegisterPageStrings.contactNumberHint,
+                  controller: contactNumber,
+                ),
                 LogElevatedButton(
-                    buttonWidth: double.infinity,
-                    buttonName: RegisterPageStrings.register,
-                    onClick: () {}, radius: 10,),
+                  buttonWidth: double.infinity,
+                  buttonName: RegisterPageStrings.register,
+                  onClick: () async {
+                    if (password.text == confirmPassword.text) {
+                      final register = await createAccount(
+                          email: email.text, password: password.text);
+                      if (register != null) {
+                        dialogComplete();
+                      }
+                    } else {
+                      dialogConfirmPass();
+                    }
+                  },
+                  radius: 10,
+                ),
               ],
             ),
           ),

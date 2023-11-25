@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
+
 class Groceries {
   final String groceriesImage;
   final String groceriesName;
   final String groceriesWeight;
   final String groceriesPrice;
-  Groceries({required this.groceriesImage,required this.groceriesName,
-    required this.groceriesPrice,required this.groceriesWeight});
+  Groceries({
+    required this.groceriesImage,
+    required this.groceriesName,
+    required this.groceriesPrice,
+    required this.groceriesWeight,
+  });
 }
-List<Groceries> listGroceries=[
+
+List<Groceries> listGroceries = [
   Groceries(
       groceriesImage: 'assets/exploreScreenImg/gloceries_1.png',
       groceriesName: 'Jaggery Powder',

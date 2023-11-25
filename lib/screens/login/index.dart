@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:vippro_project/base/app_colors.dart';
@@ -22,6 +23,66 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+  Future<UserCredential?> login({required String email, required String password}) async {
+    try {
+      final credential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+      return credential;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: const Text(
+            LoginPageStrings.noUserFound,
+            style: TextStyle(fontSize: 20),
+          ),
+          action: SnackBarAction(
+            label: 'OK',
+            onPressed: () {},
+          ),
+        ));
+      } else if (e.code == 'wrong-password') {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: const Text(
+            LoginPageStrings.wrongPass,
+            style: TextStyle(fontSize: 20),
+          ),
+          action: SnackBarAction(
+            label: 'OK',
+            onPressed: () {},
+          ),
+        ));
+      }
+    }
+    return null;
+  }
+
+  dialogComplete() {
+    return showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text('Logged in successfully.'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              setState(() {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const MainPage(),
+                  ),
+                );
+              });
+            },
+            child: const Text('OK'),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,25 +112,26 @@ class _LoginState extends State<Login> {
                       )
                     ],
                   ),
-                  const InputField(
+                  InputField(
                     textFieldName: LoginPageStrings.emailId,
                     textFieldHintText: LoginPageStrings.emailIdHint,
+                    controller: email,
                   ),
-                  const InputField(
+                  InputField(
                     textFieldName: LoginPageStrings.password,
                     textFieldHintText: LoginPageStrings.passwordHint,
+                    controller: password,
                   ),
                   LogElevatedButton(
                     buttonWidth: double.infinity,
                     buttonName: LoginPageStrings.login,
-                    onClick: () {
-                      setLogin(true);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const MainPage(),
-                        ),
-                      );
+                    onClick: () async {
+                      final loginAccount = await login(
+                          email: email.text, password: password.text);
+                      if (loginAccount != null) {
+                        setLogin(true);
+                        dialogComplete();
+                      }
                     },
                     radius: 10,
                   ),

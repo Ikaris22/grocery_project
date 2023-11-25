@@ -181,7 +181,6 @@ class _HomeScreenState extends State<HomeScreen> {
               itemBuilder: (BuildContext context, int index) {
                 return Container(
                   margin: const EdgeInsets.only(right: 20),
-                  //TODO: chia het cho 4
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
                   ),

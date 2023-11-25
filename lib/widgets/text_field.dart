@@ -4,11 +4,13 @@ import 'package:vippro_project/base/app_colors.dart';
 class InputField extends StatelessWidget {
   final String textFieldName;
   final String textFieldHintText;
+  final TextEditingController controller;
 
   const InputField({
     super.key,
     required this.textFieldName,
     required this.textFieldHintText,
+    required this.controller,
   });
 
   @override
@@ -29,6 +31,7 @@ class InputField extends StatelessWidget {
         ),
         const SizedBox(height: 14),
         TextField(
+          controller: controller,
           decoration: InputDecoration(
             hintStyle: const TextStyle(
               fontSize: 16,

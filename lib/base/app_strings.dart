@@ -28,6 +28,8 @@ class LoginPageStrings {
   static const String question = 'Don\'t You Have an Account?';
   static const String login = 'Login';
   static const String register = 'Register';
+  static const String noUserFound = 'No user found for that email.';
+  static const String wrongPass = 'Wrong password provided for that user.';
 }
 
 class RegisterPageStrings {
@@ -45,6 +47,8 @@ class RegisterPageStrings {
   static const String question = 'Already Have an Account?';
   static const String orContinueWith = 'Or Continue With';
   static const String login = 'Login';
+  static const String weakPass = 'The password provided is too weak.';
+  static const String duplicateEmail = 'The account already exists for that email.';
 }
 
 class HomePageStrings {

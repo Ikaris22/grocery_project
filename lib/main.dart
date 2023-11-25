@@ -1,15 +1,20 @@
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vippro_project/base/app_colors.dart';
 import 'package:vippro_project/base/app_fonts.dart';
 import 'package:vippro_project/screens/main_page.dart';
 import 'package:vippro_project/screens/splash/index.dart';
-
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 SharedPreferences? prefs;
 
-void main() {
+void main()async {
   runApp(const MyApp());
   initSharedPreference();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 }
 
 Future<void> initSharedPreference() async {

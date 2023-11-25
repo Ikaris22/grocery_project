@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:vippro_project/base/app_strings.dart';
-import 'package:vippro_project/screens/myWallet/my_wallet.dart';
+import 'package:vippro_project/screens/payment/widget/image_page.dart';
 import 'package:vippro_project/screens/payment/widget/payment_method.dart';
 import 'package:vippro_project/screens/payment/widget/title.dart';
 import 'package:vippro_project/screens/privacyPolicy/index.dart';
@@ -11,15 +11,14 @@ import 'package:vippro_project/widgets/address_textfield.dart';
 import 'package:vippro_project/widgets/contact_textfield.dart';
 import 'package:vippro_project/widgets/green_appbar.dart';
 import 'package:vippro_project/widgets/log_elevated_button.dart';
-
 import '../../base/app_colors.dart';
 import '../../base/app_fonts.dart';
 import '../../base/app_images.dart';
 import '../../data/local/db_helper.dart';
 import '../../data/model/address.dart';
-import '../addNewAddress/index.dart';
 import '../editAddress/edit_address.dart';
 import '../myAddresses/widget/address_item.dart';
+import '../myWallet/index.dart';
 
 class Payment extends StatefulWidget {
   const Payment({super.key});
@@ -32,6 +31,7 @@ enum RadioGroup { cod, upi, wallet, card }
 
 class _Payment extends State<Payment> {
   List<Address> address = [];
+  List<String> images = [AppImages.card1, AppImages.card1];
 
   @override
   void initState() {
@@ -187,6 +187,7 @@ class _Payment extends State<Payment> {
   }
 
   bool isVisible = false;
+  int selectedIndex = 0;
   RadioGroup _selectedRadio = RadioGroup.cod;
   @override
   Widget build(BuildContext context) {
@@ -234,116 +235,7 @@ class _Payment extends State<Payment> {
                       ],
                     ),
                   ),
-                  Visibility(
-                    visible: isVisible,
-                    child: Container(
-                      child: Column(
-                        children: [
-                          InkWell(
-                            onTap: () {},
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                SvgPicture.asset(
-                                  AppLogos.addIconOutlined,
-                                  height: 18,
-                                ),
-                                const Gap(8),
-                                const Text(
-                                  PaymentStrings.addNewCard,
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: AppColors.greenColor,
-                                    fontFamily: AppFonts.monserratSemiBold,
-                                  ),
-                                ),
-                                const Gap(16),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: 180,
-                            child: ListView(
-                              scrollDirection: Axis.horizontal,
-                              children: [
-                                InkWell(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const MyWallet()),
-                                      );
-                                    },
-                                    child: Image.asset(AppImages.card1)),
-                                Image.asset(AppImages.card2)
-                              ],
-                            ),
-                          ),
-                          Container(
-                            margin: const EdgeInsets.only(
-                              left: 16,
-                              right: 32,
-                            ),
-                            child: Stack(
-                              children: [
-                                Container(
-                                    height: 42,
-                                    width: MediaQuery.of(context).size.width,
-                                    decoration: BoxDecoration(
-                                      color: AppColors.greenColor,
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    child: const Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Gap(20),
-                                        Text(
-                                          PaymentStrings.enterCvv,
-                                          style: TextStyle(
-                                              fontSize: 16,
-                                              color: AppColors.whiteColor),
-                                        )
-                                      ],
-                                    )),
-                                Positioned(
-                                  right: 0,
-                                  child: Container(
-                                    height: 42,
-                                    width:
-                                        MediaQuery.of(context).size.width / 1.8,
-                                    decoration: BoxDecoration(
-                                      color: AppColors.whiteColor,
-                                      borderRadius: BorderRadius.circular(8),
-                                      border: Border.all(
-                                        color: AppColors.greenColor,
-                                        width: 1.0,
-                                      ),
-                                    ),
-                                    child: const TextField(
-                                      decoration: InputDecoration(
-                                        hintText: PaymentStrings.hintCvv,
-                                        hintStyle: TextStyle(
-                                          fontSize: 16,
-                                          color: AppColors.subscriptionQty,
-                                        ),
-                                        contentPadding: EdgeInsets.only(
-                                          left: 16,
-                                          top: 12,
-                                          bottom: 12,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
+                  creditCard(),
                   const Gap(20),
                   LogElevatedButton(
                     buttonWidth: 180,
@@ -352,34 +244,7 @@ class _Payment extends State<Payment> {
                     radius: 8,
                   ),
                   const Gap(20),
-                  RichText(
-                    text: TextSpan(children: <TextSpan>[
-                      const TextSpan(
-                          text: PaymentStrings.text,
-                          style: TextStyle(
-                            color: AppColors.subscriptionQty,
-                            fontSize: 14,
-                            fontFamily: AppFonts.monserratRegular,
-                          )),
-                      TextSpan(
-                        text: PaymentStrings.privacy,
-                        style: const TextStyle(
-                          color: AppColors.greenColor,
-                          fontSize: 14,
-                          fontFamily: AppFonts.monserratRegular,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const PrivacyPolicy()),
-                            );
-                          },
-                      ),
-                    ]),
-                  ),
+                  text(),
                   const Gap(80),
                 ],
               ),
@@ -421,10 +286,11 @@ class _Payment extends State<Payment> {
           fontSize: 22,
         ),
         Container(
-          height: MediaQuery.of(context).size.height / 2.5,
+          height: 180*address.length.toDouble(),
           width: MediaQuery.of(context).size.width,
           margin: const EdgeInsets.only(top: 16),
           child: ListView.builder(
+             physics: const NeverScrollableScrollPhysics(),
               itemCount: address.length,
               itemBuilder: (context, index) {
                 return Row(
@@ -586,6 +452,7 @@ class _Payment extends State<Payment> {
                             ),
                             const SizedBox(height: 16),
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Checkbox(
                                     value: checkHome,
@@ -815,6 +682,164 @@ class _Payment extends State<Payment> {
           ),
         ),
       ],
+    );
+  }
+
+  creditCard() {
+    return Visibility(
+      visible: isVisible,
+      child: Container(
+        child: Column(
+          children: [
+            InkWell(
+              onTap: () {},
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  SvgPicture.asset(
+                    AppLogos.addIconOutlined,
+                    height: 18,
+                  ),
+                  const Gap(8),
+                  const Text(
+                    PaymentStrings.addNewCard,
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: AppColors.greenColor,
+                      fontFamily: AppFonts.monserratSemiBold,
+                    ),
+                  ),
+                  const Gap(16),
+                ],
+              ),
+            ),
+            SizedBox(
+                height: 180,
+                child: PageView.builder(
+                    controller: PageController(viewportFraction: 0.6),
+                    onPageChanged: (value) {
+                      setState(() {
+                        selectedIndex = value;
+                      });
+                    },
+                    itemCount: images.length,
+                    itemBuilder: (context, index) {
+                      double scale = index == selectedIndex ? 1 : 0.85;
+                      return TweenAnimationBuilder(
+                        curve: Curves.easeIn,
+                        tween: Tween(begin: scale, end: scale),
+                        duration: const Duration(milliseconds: 100),
+                        builder: (BuildContext context, Object? value,
+                            Widget? child) {
+                          return Transform.scale(
+                            scale: scale,
+                            child: child,
+                          );
+                        },
+                        child: ImagePage(
+                          image: images[index],
+                          isSelected: selectedIndex == index,
+                          clickNavigator: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const MyWallet(),
+                              ),
+                            );
+                          },
+                        ),
+                      );
+                    })),
+            Container(
+              margin: const EdgeInsets.only(
+                left: 16,
+                right: 32,
+              ),
+              child: Stack(
+                children: [
+                  Container(
+                      height: 42,
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                        color: AppColors.greenColor,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: const Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Gap(20),
+                          Text(
+                            PaymentStrings.enterCvv,
+                            style: TextStyle(
+                                fontSize: 16, color: AppColors.whiteColor),
+                          )
+                        ],
+                      )),
+                  Positioned(
+                    right: 0,
+                    child: Container(
+                      height: 42,
+                      width: MediaQuery.of(context).size.width / 1.8,
+                      decoration: BoxDecoration(
+                        color: AppColors.whiteColor,
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(
+                          color: AppColors.greenColor,
+                          width: 1.0,
+                        ),
+                      ),
+                      child: const TextField(
+                        decoration: InputDecoration(
+                          hintText: PaymentStrings.hintCvv,
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            color: AppColors.subscriptionQty,
+                          ),
+                          contentPadding: EdgeInsets.only(
+                            left: 16,
+                            top: 12,
+                            bottom: 12,
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  text() {
+    return RichText(
+      text: TextSpan(children: <TextSpan>[
+        const TextSpan(
+            text: PaymentStrings.text,
+            style: TextStyle(
+              color: AppColors.subscriptionQty,
+              fontSize: 14,
+              fontFamily: AppFonts.monserratRegular,
+            )),
+        TextSpan(
+          text: PaymentStrings.privacy,
+          style: const TextStyle(
+            color: AppColors.greenColor,
+            fontSize: 14,
+            fontFamily: AppFonts.monserratRegular,
+            fontWeight: FontWeight.bold,
+          ),
+          recognizer: TapGestureRecognizer()
+            ..onTap = () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const PrivacyPolicy()),
+              );
+            },
+        ),
+      ]),
     );
   }
 }

@@ -105,7 +105,7 @@ class _MyOrders extends State<MyOrders> {
                                 : notDeliverYet(),
                             lineHeight: listOrders[index].isDelivered == true
                                 ? 200
-                                : 172,
+                                : 168,
                           );
                         }))
               ],
