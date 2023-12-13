@@ -1,35 +1,73 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:marquee/marquee.dart';
 import 'package:vippro_project/base/app_strings.dart';
-import 'package:vippro_project/screens/details/index.dart';
 import 'package:vippro_project/widgets/count_button.dart';
-import 'package:vippro_project/widgets/favourite_button.dart';
-
 import '../../../base/app_colors.dart';
 import '../../../base/app_images.dart';
-import '../../../data/mock/list_fruits.dart';
 import '../../../widgets/subcribe_button.dart';
 
-class FruitItems extends StatefulWidget {
+class ProductItems extends StatefulWidget {
   final String image;
   final String name;
   final String price;
   final String weight;
+  final String isFavIcon;
   final Function() clickDetails;
+  final Function() clickFav;
 
-  const FruitItems({
-    super.key,
-    required this.price,
-    required this.weight,
-    required this.name,
-    required this.image,
-    required this.clickDetails,
-  });
+  const ProductItems(
+      {super.key,
+      required this.price,
+      required this.weight,
+      required this.name,
+      required this.image,
+      required this.clickDetails,
+      required this.isFavIcon,
+      required this.clickFav});
 
   @override
   State<StatefulWidget> createState() => _FruitItems();
 }
 
-class _FruitItems extends State<FruitItems> {
+class _FruitItems extends State<ProductItems> {
+  bool isTextLongEnough(String text) {
+    final textPainter = TextPainter(
+      text: TextSpan(
+        text: text,
+        style: const TextStyle(fontSize: 17),
+      ),
+      maxLines: 1,
+      textDirection: TextDirection.ltr,
+    )..layout(maxWidth: double.infinity);
+
+    return textPainter.width > MediaQuery.of(context).size.width / 4.6;
+  }
+
+  Widget buildMarquee(String text) {
+    return Marquee(
+      text: text,
+      style: const TextStyle(
+          fontSize: 17,
+          fontWeight: FontWeight.w700,
+          color: AppColors.textGreyColor),
+      scrollAxis: Axis.horizontal,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      blankSpace: 8,
+      startPadding: 0,
+      pauseAfterRound: const Duration(seconds: 1),
+      accelerationDuration: const Duration(seconds: 2),
+    );
+  }
+
+  Widget buildNonScrollingText(String text) {
+    return Text(text,
+        style: const TextStyle(
+            fontSize: 17,
+            fontWeight: FontWeight.w700,
+            color: AppColors.textGreyColor));
+  }
+
   String iconStatus = AppLogos.heartIcon;
   String subscribeStatus = FruitPageStrings.subscribe;
   int count = 1;
@@ -54,22 +92,17 @@ class _FruitItems extends State<FruitItems> {
                   height: 92,
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(
-                      height: 36,
-                      child: TextButton(
-                        onPressed: widget.clickDetails,
-                        style: TextButton.styleFrom(padding: EdgeInsets.zero),
-                        child: Text(
-                          widget.name,
-                          style: const TextStyle(
-                              fontSize: 17,
-                              fontWeight: FontWeight.w700,
-                              color: AppColors.textGreyColor),
-                        ),
-                      ),
+                    InkWell(
+                      onTap: widget.clickDetails,
+                      child: SizedBox(
+                          width: MediaQuery.of(context).size.width / 3.8,
+                          height: 20,
+                          child: isTextLongEnough(widget.name)
+                              ? buildMarquee(widget.name)
+                              : buildNonScrollingText(widget.name)),
                     ),
-                    const SizedBox(width: 8),
                     Text(
                       '(${widget.weight})',
                       style: const TextStyle(color: AppColors.textGreyColor),
@@ -141,19 +174,11 @@ class _FruitItems extends State<FruitItems> {
             ),
           ),
           Positioned(
-            right: 0,
-            top: 4,
-            child: FavouriteButton(
-                onClick: () {
-                  setState(() {
-                    iconStatus == AppLogos.heartIcon
-                        ? iconStatus = AppLogos.redHeartIcon
-                        : iconStatus = AppLogos.heartIcon;
-                    print(iconStatus);
-                  });
-                },
-                icon: iconStatus),
-          ),
+              right: 12,
+              top: 12,
+              child: InkWell(
+                  onTap: widget.clickFav,
+                  child: SvgPicture.asset(widget.isFavIcon))),
         ],
       ),
     );

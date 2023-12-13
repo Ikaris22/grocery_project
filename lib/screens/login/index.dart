@@ -23,65 +23,26 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  // final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   Future<UserCredential?> login({required String email, required String password}) async {
     try {
-      final credential = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: email, password: password);
+      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: email,
+          password: password
+      );
       return credential;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: const Text(
-            LoginPageStrings.noUserFound,
-            style: TextStyle(fontSize: 20),
-          ),
-          action: SnackBarAction(
-            label: 'OK',
-            onPressed: () {},
-          ),
-        ));
+        print('No user found for that email.');
       } else if (e.code == 'wrong-password') {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: const Text(
-            LoginPageStrings.wrongPass,
-            style: TextStyle(fontSize: 20),
-          ),
-          action: SnackBarAction(
-            label: 'OK',
-            onPressed: () {},
-          ),
-        ));
+        print('Wrong password provided for that user.');
       }
     }
     return null;
   }
 
-  dialogComplete() {
-    return showDialog<String>(
-      context: context,
-      builder: (BuildContext context) => AlertDialog(
-        title: const Text('Logged in successfully.'),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () {
-              setState(() {
-                Navigator.pop(context);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const MainPage(),
-                  ),
-                );
-              });
-            },
-            child: const Text('OK'),
-          ),
-        ],
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -130,7 +91,12 @@ class _LoginState extends State<Login> {
                           email: email.text, password: password.text);
                       if (loginAccount != null) {
                         setLogin(true);
-                        dialogComplete();
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const MainPage(),
+                          ),
+                        );
                       }
                     },
                     radius: 10,

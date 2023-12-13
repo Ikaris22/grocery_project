@@ -1,55 +1,38 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:marquee/marquee.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vippro_project/base/app_colors.dart';
 import 'package:vippro_project/base/app_images.dart';
-import 'package:vippro_project/base/app_strings.dart';
-import 'package:vippro_project/data/mock/list_fruits.dart';
 import 'package:vippro_project/screens/details/index.dart';
-import 'package:vippro_project/screens/explore/index.dart';
 import 'package:vippro_project/screens/fruits/widgets/fruit_items.dart';
 import 'package:vippro_project/widgets/green_appbar.dart';
 
-import '../../data/local/db_helper.dart';
-import '../../data/model/fruits.dart';
+import '../../data/model/products.dart';
 
-class FruitsScreen extends StatefulWidget {
-  const FruitsScreen({super.key});
+class ProductsScreen extends StatefulWidget {
+  final String title;
+  final List<Products> products;
+  const ProductsScreen(
+      {super.key, required this.products, required this.title});
 
   @override
-  State<StatefulWidget> createState() => _FruitsScreenState();
+  State<StatefulWidget> createState() => _ProductsScreenState();
 }
 
-class _FruitsScreenState extends State<FruitsScreen> {
-  // List<Fruit> fruit =[];
-  // @override
-  // void initState() {
-  //   loadFruit();
-  //   super.initState();
-  // }
-
-  // Future<void> loadFruit() async {
-  //   final db = await DBHelper.instance.database;
-  //   final data =  await db.rawQuery('SELECT * FROM fruitTable');
-  //   setState(() {
-  //     fruit = List.generate(data.length, (index) {
-  //       return Fruit(
-  //           id: int.parse(data[index]['id'].toString()),
-  //           image: data[index]['image'].toString(),
-  //           name:data[index]['name'].toString(),
-  //           weight: data[index]['weight'].toString(),
-  //           price: data[index]['price'].toString(),
-  //           count: int.parse(data[index]['count'].toString()),
-  //           isFavourite: int.parse(data[index]['isFavourite'].toString()) == 1,
-  //           isSubscribed: int.parse(data[index]['isSubscribed'].toString()) == 1
-  //       );
-  //     });
-  //   });
-  // }
+class _ProductsScreenState extends State<ProductsScreen> {
+  final db= FirebaseFirestore.instance;
+  Future<void> changeFav ({required String id,required bool isFav})async{
+    await db.collection('Products').doc(id).update({"isFav":isFav}).then((value) => print("DocumentSnapshot successfully updated!"),
+        onError: (e) => print("Error updating document $e"));
+  }
+  String changeIconFav(bool isFav){
+    return isFav?AppLogos.redHeartIcon:AppLogos.heartIcon;
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: GreenAppbar(
-        title: FruitPageStrings.appbarTitle,
+        title: widget.title,
         clickBack: () {
           Navigator.pop(context);
         },
@@ -74,7 +57,7 @@ class _FruitsScreenState extends State<FruitsScreen> {
                 color: Colors.white,
               ),
               child: GridView.builder(
-                  itemCount: listFruits.length,
+                  itemCount: widget.products.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     mainAxisSpacing: 16,
@@ -82,19 +65,27 @@ class _FruitsScreenState extends State<FruitsScreen> {
                     mainAxisExtent: 228,
                   ),
                   itemBuilder: (BuildContext context, int index) {
-                    return FruitItems(
-                      price: listFruits[index].fruitPrice,
-                      weight: listFruits[index].fruitWeight,
-                      name: listFruits[index].fruitName,
-                      image: listFruits[index].fruitImage,
+                    return ProductItems(
+                      price: widget.products[index].price,
+                      weight: widget.products[index].amount,
+                      name: widget.products[index].name,
+                      image: widget.products[index].image,
                       clickDetails: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Details(index: index),
+                            builder: (context) =>
+                                Details(product: widget.products[index]),
                           ),
                         );
                       },
+                      isFavIcon: changeIconFav(widget.products[index].isFav),
+                        clickFav: () {
+                          changeFav(id: widget.products[index].id, isFav: !widget.products[index].isFav);
+                          setState(() {
+                            widget.products[index].isFav=!widget.products[index].isFav;
+                          });
+                        },
                     );
                   }))
         ],

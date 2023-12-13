@@ -31,7 +31,7 @@ enum RadioGroup { cod, upi, wallet, card }
 
 class _Payment extends State<Payment> {
   List<Address> address = [];
-  List<String> images = [AppImages.card1, AppImages.card1];
+  List<String> images = [AppImages.card1, AppImages.card1, AppImages.card1];
 
   @override
   void initState() {
@@ -286,11 +286,11 @@ class _Payment extends State<Payment> {
           fontSize: 22,
         ),
         Container(
-          height: 180*address.length.toDouble(),
+          height: 180 * address.length.toDouble(),
           width: MediaQuery.of(context).size.width,
           margin: const EdgeInsets.only(top: 16),
           child: ListView.builder(
-             physics: const NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               itemCount: address.length,
               itemBuilder: (context, index) {
                 return Row(
@@ -381,33 +381,31 @@ class _Payment extends State<Payment> {
               stateController = TextEditingController();
               cityController = TextEditingController();
               pincodeController = TextEditingController();
+              checkOffice = false;
+              checkHome = false;
+              checkOffice = false;
             });
             showModalBottomSheet(
+                isScrollControlled: true,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(16),
+                    topLeft: Radius.circular(16),
+                  ),
+                ),
                 context: context,
                 builder: (BuildContext context) {
                   return StatefulBuilder(
                       builder: (BuildContext context, StateSetter setState) {
-                    return Container(
-                      padding: const EdgeInsets.only(
-                        top: 20,
-                        left: 32,
-                        right: 32,
-                        bottom: 12,
-                      ),
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(32),
-                          topLeft: Radius.circular(32),
+                    return SingleChildScrollView(
+                      child: Container(
+                        padding: EdgeInsets.only(
+                          top: 20,
+                          left: 32,
+                          right: 32,
+                          bottom: MediaQuery.of(context).viewInsets.bottom/1.8,
                         ),
-                        color: Colors.white,
-                      ),
-                      height: 700,
-                      child: ClipRRect(
-                        borderRadius: const BorderRadius.only(
-                          topRight: Radius.circular(32),
-                          topLeft: Radius.circular(32),
-                        ),
-                        child: ListView(
+                        child: Column(
                           children: [
                             const Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -539,7 +537,8 @@ class _Payment extends State<Payment> {
                                     });
                                   },
                                   radius: 4),
-                            )
+                            ),
+                            const Gap(24),
                           ],
                         ),
                       ),

@@ -24,7 +24,7 @@ class _ContactUs extends State<ContactUs> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: GreenAppbar(
-        title: 'Contact Us',
+        title: ContactUsStrings.appBarTitle,
         clickBack: () {
           Navigator.pop(context);
         },
@@ -55,7 +55,7 @@ class _ContactUs extends State<ContactUs> {
                       left: 12,
                       right: 12,
                       top: 16,
-                      bottom: 20,
+                      bottom: 8,
                     ),
                     margin: const EdgeInsets.only(bottom: 24,left: 16,right: 16,top: 8),
                     decoration: BoxDecoration(

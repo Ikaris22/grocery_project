@@ -20,7 +20,7 @@ class LogButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
-        minimumSize: const Size(180, 45),
+        minimumSize: const Size(160, 45),
         side: const BorderSide(
           color: AppColors.greenColor,
         ),

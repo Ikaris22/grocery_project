@@ -74,6 +74,7 @@ class _CartScreen extends State<CartScreen> {
                     itemCount: listCart.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Container(
+                        padding: EdgeInsets.only(left: 16,right: 8),
                           height: 116,
                           margin: index == listCart.length - 1
                               ? const EdgeInsets.only(bottom: 0)

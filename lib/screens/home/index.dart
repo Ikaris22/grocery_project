@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:vippro_project/base/app_colors.dart';
@@ -11,6 +12,7 @@ import 'package:vippro_project/data/mock/list_top_products.dart';
 import 'package:vippro_project/widgets/app_bar.dart';
 import 'package:vippro_project/widgets/top_listview_label.dart';
 
+import '../../data/model/explore_caregories.dart';
 import '../../widgets/small_elevated_button.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -21,14 +23,34 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final db = FirebaseFirestore.instance;
   int currentIndex = 0;
-
+ List<ExploreCategories> listTopCategories =[];
   void changeAdvertisement(value) {
     setState(() {
       currentIndex = value;
     });
   }
-
+  Future<void> addTopCategories() async {
+    await db.collection("Explore").get().then((event) {
+      for (var doc in event.docs) {
+        if(doc.data()['image']!='empty'){
+          listTopCategories.add(ExploreCategories(
+            id: doc.id,
+            title: doc.data()['title'],
+            image: doc.data()['image'],
+          ));
+        }
+      }
+    });
+    setState(() {
+    });
+  }
+ @override
+  void initState() {
+    addTopCategories();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -52,9 +74,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   SvgPicture.asset(AppLogos.logoSearch),
                   const SizedBox(width: 20),
-                  const SizedBox(
-                    width: 320,
-                    child: TextField(
+                   SizedBox(
+                    width: MediaQuery.of(context).size.width-88,
+                    child: const TextField(
                       decoration: InputDecoration(
                           hintText: HomePageStrings.hintSearch,
                           hintStyle: TextStyle(
@@ -138,7 +160,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   Image.asset(
                     listAd[index].adImage,
-                    height: 120,
+                    width: MediaQuery.of(context).size.width/1.9,
                   )
                 ],
               );
@@ -177,7 +199,7 @@ class _HomeScreenState extends State<HomeScreen> {
           height: screenHeight / 7,
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: listCategories.length,
+              itemCount: listTopCategories.length,
               itemBuilder: (BuildContext context, int index) {
                 return Container(
                   margin: const EdgeInsets.only(right: 20),
@@ -207,14 +229,14 @@ class _HomeScreenState extends State<HomeScreen> {
                             color: AppColors.greenColor),
                         child: Center(
                           child: Text(
-                            listCategories[index].categoriesName,
+                            listTopCategories[index].title,
                             style: const TextStyle(
                                 fontSize: 11, color: AppColors.whiteColor),
                           ),
                         ),
                       ),
                       Image.asset(
-                        listCategories[index].categoriesImage,
+                        listTopCategories[index].image,
                         height: 80,
                         width: 80,
                       )
@@ -251,13 +273,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: AppColors.backGroundColor),
-                      width: screenWidth / 2.8,
+                      width:  132,
                       child: Stack(
                         children: [
                           Container(
                             margin: const EdgeInsets.only(top: 12, left: 8),
                             height: screenHeight / 5.6,
-                            width: screenWidth / 3.7,
+                            width: 112,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -393,7 +415,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   return Container(
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     margin: const EdgeInsets.only(right: 16, top: 2),
-                    width: screenWidth / 2.8,
+                    width: 140,
                     height: 160,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
@@ -442,13 +464,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemBuilder: (BuildContext context, int index) {
                   return Container(
                     padding: const EdgeInsets.only(
-                      left: 12,
-                      right: 12,
+                      left: 8,
+                      right: 8,
                       top: 16,
                       bottom: 16,
                     ),
                     margin: const EdgeInsets.only(right: 16, top: 2),
-                    width: screenWidth / 2.8,
+                    width: 140,
                     height: 188,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),

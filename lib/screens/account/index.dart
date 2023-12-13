@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:vippro_project/base/app_colors.dart';
 import 'package:vippro_project/base/app_images.dart';
@@ -148,7 +149,8 @@ class _AccountScreenState extends State<AccountScreen> {
                     ProfileItem(
                       icon: AppLogos.logOut,
                       title: AccountPageStrings.logOut,
-                      onClick: () {
+                      onClick: ()async {
+                        await FirebaseAuth.instance.signOut();
                         setLogin(false);
                         Navigator.push(
                           context,

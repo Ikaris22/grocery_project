@@ -28,7 +28,6 @@ class _CartItems extends State<CartItems>{
         Row(
           children: [
             Container(
-              margin: const EdgeInsets.only(left: 20),
               width: 88,
               height: 88,
               decoration: BoxDecoration(
@@ -86,33 +85,42 @@ class _CartItems extends State<CartItems>{
             )
           ],
         ),
-        Positioned(
-            top: 4,
-            left: 340,
-            child: SizedBox(
-              width: 28,
-              height: 28,
-              child: IconButton(
-                  onPressed: widget.clickRemoveItem,
-                  icon: SvgPicture.asset(
-                      AppLogos.closeIcon)),
-            )),
-        Positioned(
-          top: 64,
-            left: 260,
-            child: CountButton(
-              onClickSubtract: () {
-                setState(() {
-                  count > 1 ? count-- : count = count;
-                });
-              },
-              onClickAdd: () {
-                setState(() {
-                  count++;
-                });
-              },
-              count: count.toString(), fontSize: 24, type: CountButtonType.medium,
-            ))
+       Column(
+         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+         children: [
+           Row(
+             mainAxisAlignment: MainAxisAlignment.end,
+             children: [
+               SizedBox(
+                 width: 28,
+                 height: 28,
+                 child: IconButton(
+                     onPressed: widget.clickRemoveItem,
+                     icon: SvgPicture.asset(
+                         AppLogos.closeIcon)),
+               ),
+             ],
+           ),
+           Row(
+             mainAxisAlignment: MainAxisAlignment.end,
+             children: [
+               CountButton(
+                 onClickSubtract: () {
+                   setState(() {
+                     count > 1 ? count-- : count = count;
+                   });
+                 },
+                 onClickAdd: () {
+                   setState(() {
+                     count++;
+                   });
+                 },
+                 count: count.toString(), fontSize: 24, type: CountButtonType.medium,
+               ),
+             ],
+           )
+         ],
+       )
       ],
     );
   }

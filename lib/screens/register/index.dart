@@ -65,7 +65,8 @@ class _RegisterState extends State<Register> {
     );
   }
 
-  Future<UserCredential?> createAccount({required String email, required String password}) async {
+  Future<UserCredential?> createAccount(
+      {required String email, required String password}) async {
     try {
       final credential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(

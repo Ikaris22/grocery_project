@@ -28,7 +28,7 @@ class OrderItem extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                  padding: const EdgeInsets.only(left: 16, right: 16, top: 20, bottom: 20),
+                  padding: const EdgeInsets.only(left: 8, right: 0, top: 20, bottom: 20),
                   margin: const EdgeInsets.only(left: 0,top: 4,bottom: 16),
                   height: 120,
                   decoration: BoxDecoration(

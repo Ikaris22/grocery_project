@@ -4,18 +4,19 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:vippro_project/base/app_images.dart';
 import 'package:vippro_project/base/app_strings.dart';
-import 'package:vippro_project/data/mock/list_fruits.dart';
+import 'package:vippro_project/data/model/products.dart';
 import 'package:vippro_project/screens/details/widget/related_items.dart';
 import 'package:vippro_project/widgets/count_button.dart';
 import 'package:vippro_project/widgets/subcribe_button.dart';
 
 import '../../base/app_colors.dart';
 
+
 class Details extends StatefulWidget {
-  final int index;
+  final Products product;
   const Details({
     super.key,
-    required this.index,
+    required this.product,
   });
 
   @override
@@ -78,11 +79,17 @@ class _Details extends State<Details> {
                           onPageChanged: (value) => changePage(value),
                           itemCount: 2,
                           itemBuilder: (context, i) {
-                            return SizedBox(
-                              child: Image.asset(
-                                listFruits[widget.index].fruitImage,
-                                fit: BoxFit.contain,
-                              ),
+                            return Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SizedBox(
+                                  height:MediaQuery.of(context).size.height / 6 ,
+                                  child: Image.asset(
+                                    widget.product.image,
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
+                              ],
                             );
                           }),
                     )),
@@ -129,7 +136,7 @@ class _Details extends State<Details> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          listFruits[widget.index].fruitName,
+                          widget.product.name,
                           style: const TextStyle(
                             fontSize: 28,
                             fontWeight: FontWeight.bold,
@@ -164,7 +171,7 @@ class _Details extends State<Details> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          listFruits[widget.index].fruitPrice,
+                          widget.product.price,
                           style: const TextStyle(
                             fontSize: 28,
                             fontWeight: FontWeight.w900,
