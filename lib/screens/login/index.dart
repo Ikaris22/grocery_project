@@ -11,7 +11,6 @@ import 'package:vippro_project/widgets/app_bar.dart';
 import 'package:vippro_project/widgets/log_elevated_button.dart';
 import 'package:vippro_project/widgets/outlined_button.dart';
 import 'package:vippro_project/widgets/divider_line.dart';
-import '../../main.dart';
 import '../../widgets/text_button_login.dart';
 import '../../widgets/text_field.dart';
 
@@ -26,12 +25,11 @@ class _LoginState extends State<Login> {
   // final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
-  Future<UserCredential?> login({required String email, required String password}) async {
+  Future<UserCredential?> login(
+      {required String email, required String password}) async {
     try {
-      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: email,
-          password: password
-      );
+      final credential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
       return credential;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -42,7 +40,6 @@ class _LoginState extends State<Login> {
     }
     return null;
   }
-
 
   @override
   Widget build(BuildContext context) {

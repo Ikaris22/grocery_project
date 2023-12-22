@@ -6,12 +6,10 @@ import 'package:vippro_project/base/app_images.dart';
 import 'package:vippro_project/base/app_strings.dart';
 import 'package:vippro_project/data/mock/deals_of_the_week.dart';
 import 'package:vippro_project/data/mock/feature_items.dart';
-import 'package:vippro_project/data/mock/list_advertisement.dart';
-import 'package:vippro_project/data/mock/list_categories.dart';
 import 'package:vippro_project/data/mock/list_top_products.dart';
 import 'package:vippro_project/widgets/app_bar.dart';
 import 'package:vippro_project/widgets/top_listview_label.dart';
-
+import '../../data/model/advertisement.dart';
 import '../../data/model/explore_caregories.dart';
 import '../../widgets/small_elevated_button.dart';
 
@@ -25,16 +23,18 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final db = FirebaseFirestore.instance;
   int currentIndex = 0;
- List<ExploreCategories> listTopCategories =[];
+  List<ExploreCategories> listTopCategories = [];
+  List<Advertisement> listAdvertisement = [];
   void changeAdvertisement(value) {
     setState(() {
       currentIndex = value;
     });
   }
+
   Future<void> addTopCategories() async {
     await db.collection("Explore").get().then((event) {
       for (var doc in event.docs) {
-        if(doc.data()['image']!='empty'){
+        if (doc.data()['image'] != 'empty') {
           listTopCategories.add(ExploreCategories(
             id: doc.id,
             title: doc.data()['title'],
@@ -43,19 +43,32 @@ class _HomeScreenState extends State<HomeScreen> {
         }
       }
     });
-    setState(() {
+    setState(() {});
+  }
+
+  Future<void> addAdvertisement() async {
+    await db.collection("Advertisements").get().then((event) {
+      for (var doc in event.docs) {
+        listAdvertisement.add(Advertisement(
+          image: doc.data()['image'],
+          content: doc.data()['content'],
+          saleOff: doc.data()['saleOff'],
+        ));
+      }
     });
   }
- @override
+
+  @override
   void initState() {
+    addAdvertisement();
     addTopCategories();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-
     return Scaffold(
       appBar: AppBars(
           appBarChild: Container(
@@ -74,8 +87,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   SvgPicture.asset(AppLogos.logoSearch),
                   const SizedBox(width: 20),
-                   SizedBox(
-                    width: MediaQuery.of(context).size.width-88,
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width - 88,
                     child: const TextField(
                       decoration: InputDecoration(
                           hintText: HomePageStrings.hintSearch,
@@ -105,8 +118,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   itemDot(int currentIndex, int i) {
     return Container(
-      height: 4,
-      width: i == currentIndex ? 16 : 12,
+      height: 6,
+      width: i == currentIndex ? 20 : 12,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(40),
           color:
@@ -114,7 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget advertisement1(double screenHeight) {
+ Widget advertisement1(double screenHeight) {
     return Container(
         height: screenHeight / 5.95,
         margin: const EdgeInsets.only(
@@ -132,38 +145,43 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         child: PageView.builder(
             onPageChanged: (value) => changeAdvertisement(value),
-            itemCount: listAd.length,
+            itemCount: listAdvertisement.length,
             itemBuilder: (context, index) {
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        listAd[index].adContent,
-                        style: const TextStyle(
-                          color: AppColors.whiteColor,
-                          fontSize: 19,
+              return listAdvertisement.isEmpty
+                  ? const Text('null')
+                  : Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width / 4,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                listAdvertisement[index].content,
+                                style: const TextStyle(
+                                  color: AppColors.whiteColor,
+                                  fontSize: 19,
+                                ),
+                              ),
+                              const SizedBox(height: 12),
+                              Text(
+                                listAdvertisement[index].saleOff,
+                                style: const TextStyle(
+                                  color: AppColors.whiteColor,
+                                  fontSize: 19,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 12),
-                      Text(
-                        listAd[index].adSaleOff,
-                        style: const TextStyle(
-                          color: AppColors.whiteColor,
-                          fontSize: 19,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      )
-                    ],
-                  ),
-                  Image.asset(
-                    listAd[index].adImage,
-                    width: MediaQuery.of(context).size.width/1.9,
-                  )
-                ],
-              );
+                        Image.asset(
+                          listAdvertisement[index].image,
+                          width: MediaQuery.of(context).size.width / 1.9,
+                        )
+                      ],
+                    );
             }));
   }
 
@@ -172,13 +190,15 @@ class _HomeScreenState extends State<HomeScreen> {
       margin: const EdgeInsets.only(top: 20, bottom: 12),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          itemDot(currentIndex, 0),
-          const SizedBox(width: 2),
-          itemDot(currentIndex, 1),
-          const SizedBox(width: 2),
-          itemDot(currentIndex, 2)
-        ],
+        children: List.generate(listAdvertisement.length, (index) {
+          int i = index;
+          return Row(
+            children: [
+              itemDot(currentIndex, i),
+              SizedBox(width: i == listAdvertisement.length - 1 ? 0 : 4),
+            ],
+          );
+        }),
       ),
     );
   }
@@ -201,6 +221,7 @@ class _HomeScreenState extends State<HomeScreen> {
               scrollDirection: Axis.horizontal,
               itemCount: listTopCategories.length,
               itemBuilder: (BuildContext context, int index) {
+                print(listTopCategories[index].title);
                 return Container(
                   margin: const EdgeInsets.only(right: 20),
                   decoration: BoxDecoration(
@@ -273,7 +294,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: AppColors.backGroundColor),
-                      width:  132,
+                      width: 132,
                       child: Stack(
                         children: [
                           Container(

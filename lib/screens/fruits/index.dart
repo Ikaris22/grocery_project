@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:marquee/marquee.dart';
 import 'package:flutter/material.dart';
 import 'package:vippro_project/base/app_colors.dart';
 import 'package:vippro_project/base/app_images.dart';
@@ -20,14 +19,17 @@ class ProductsScreen extends StatefulWidget {
 }
 
 class _ProductsScreenState extends State<ProductsScreen> {
-  final db= FirebaseFirestore.instance;
-  Future<void> changeFav ({required String id,required bool isFav})async{
-    await db.collection('Products').doc(id).update({"isFav":isFav}).then((value) => print("DocumentSnapshot successfully updated!"),
+  final db = FirebaseFirestore.instance;
+  Future<void> changeFav({required String id, required bool isFav}) async {
+    await db.collection('Products').doc(id).update({"isFav": isFav}).then(
+        (value) => print("DocumentSnapshot successfully updated!"),
         onError: (e) => print("Error updating document $e"));
   }
-  String changeIconFav(bool isFav){
-    return isFav?AppLogos.redHeartIcon:AppLogos.heartIcon;
+
+  String changeIconFav(bool isFav) {
+    return isFav ? AppLogos.redHeartIcon : AppLogos.heartIcon;
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,12 +82,15 @@ class _ProductsScreenState extends State<ProductsScreen> {
                         );
                       },
                       isFavIcon: changeIconFav(widget.products[index].isFav),
-                        clickFav: () {
-                          changeFav(id: widget.products[index].id, isFav: !widget.products[index].isFav);
-                          setState(() {
-                            widget.products[index].isFav=!widget.products[index].isFav;
-                          });
-                        },
+                      clickFav: () {
+                        changeFav(
+                            id: widget.products[index].id,
+                            isFav: !widget.products[index].isFav);
+                        setState(() {
+                          widget.products[index].isFav =
+                              !widget.products[index].isFav;
+                        });
+                      },
                     );
                   }))
         ],

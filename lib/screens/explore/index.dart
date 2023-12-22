@@ -36,7 +36,6 @@ class _ExploreScreen extends State<ExploreScreen> {
       }
     });
   }
-
   Future<void> addGroceries() async {
     await db.collection('Products').get().then((value) {
       for (var item in value.docs) {
@@ -54,7 +53,6 @@ class _ExploreScreen extends State<ExploreScreen> {
       }
     });
   }
-
   Future<void> addVegetables() async {
     await db.collection('Products').get().then((value) {
       for (var item in value.docs) {
@@ -72,7 +70,6 @@ class _ExploreScreen extends State<ExploreScreen> {
       }
     });
   }
-
   Future<void> addFruit() async {
     await db.collection('Products').get().then((value) {
       for (var item in value.docs) {
@@ -90,7 +87,6 @@ class _ExploreScreen extends State<ExploreScreen> {
       }
     });
   }
-
   Future<void> addDairyProducts() async {
     await db.collection('Products').get().then((value) {
       for (var item in value.docs) {
@@ -108,7 +104,6 @@ class _ExploreScreen extends State<ExploreScreen> {
       }
     });
   }
-
   Future<void> addBakery() async {
     await db.collection('Products').get().then((value) {
       for (var item in value.docs) {
@@ -126,13 +121,11 @@ class _ExploreScreen extends State<ExploreScreen> {
       }
     });
   }
-
   @override
   void initState() {
     super.initState();
     addTitle();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

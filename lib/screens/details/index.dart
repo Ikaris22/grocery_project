@@ -8,7 +8,6 @@ import 'package:vippro_project/data/model/products.dart';
 import 'package:vippro_project/screens/details/widget/related_items.dart';
 import 'package:vippro_project/widgets/count_button.dart';
 import 'package:vippro_project/widgets/subcribe_button.dart';
-
 import '../../base/app_colors.dart';
 
 

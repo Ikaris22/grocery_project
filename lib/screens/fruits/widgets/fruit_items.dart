@@ -55,8 +55,8 @@ class _FruitItems extends State<ProductItems> {
       crossAxisAlignment: CrossAxisAlignment.start,
       blankSpace: 8,
       startPadding: 0,
-      pauseAfterRound: const Duration(seconds: 1),
-      accelerationDuration: const Duration(seconds: 2),
+      pauseAfterRound: const Duration(milliseconds: 1200),
+      accelerationDuration: const Duration(seconds: 3),
     );
   }
 
@@ -67,7 +67,6 @@ class _FruitItems extends State<ProductItems> {
             fontWeight: FontWeight.w700,
             color: AppColors.textGreyColor));
   }
-
   String iconStatus = AppLogos.heartIcon;
   String subscribeStatus = FruitPageStrings.subscribe;
   int count = 1;
@@ -103,9 +102,14 @@ class _FruitItems extends State<ProductItems> {
                               ? buildMarquee(widget.name)
                               : buildNonScrollingText(widget.name)),
                     ),
-                    Text(
-                      '(${widget.weight})',
-                      style: const TextStyle(color: AppColors.textGreyColor),
+                    Row(
+                      children: [
+                        Text(
+                          '(${widget.weight})',
+                          style: const TextStyle(color: AppColors.textGreyColor),
+                        ),
+                        const SizedBox(width: 8),
+                      ],
                     ),
                   ],
                 ),

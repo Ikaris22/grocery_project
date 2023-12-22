@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:vippro_project/base/app_strings.dart';
-
 import '../../base/app_colors.dart';
 import '../../base/app_images.dart';
 import '../../data/model/products.dart';
